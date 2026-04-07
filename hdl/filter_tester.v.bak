@@ -1,0 +1,118 @@
+module filter_tester (
+    input        clk,        // 25 MHz VGA/Pixel clock
+    input        rst_n,      // Active-low reset (e.g., ~KEY[0])
+    input  [9:0] SW,         // Switches 0, 1, 2 for mode selection
+    input        de,         // Data Enable from VGA controller
+    input  [7:0] r_in,       // Raw Red from camera
+    input  [7:0] g_in,       // Raw Green from camera
+    input  [7:0] b_in,       // Raw Blue from camera
+    
+    output reg [7:0] r_out,  // Processed Red out to VGA
+    output reg [7:0] g_out,  // Processed Green out to VGA
+    output reg [7:0] b_out   // Processed Blue out to VGA
+);
+
+    // ---------------------------------------------------------------
+    // 1. Grayscale Conversion (Standard)
+    // ---------------------------------------------------------------
+    wire [7:0] gray_raw;
+    grayscale u_gray (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .r_in    (r_in),
+        .g_in    (g_in),
+        .b_in    (b_in),
+        .de      (de),
+        .gray_out(gray_raw)
+    );
+
+    // ---------------------------------------------------------------
+    // 2. Gaussian Blur (Fed by Grayscale)
+    // ---------------------------------------------------------------
+    wire [7:0] gray_blur_pass1;
+    wire [7:0] gray_blur; // Final double-blurred output
+
+    // Pass 1
+    gaussian_blur u_blur_1 (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .gray_in (gray_raw),
+        .de      (de),
+        .gray_out(gray_blur_pass1)
+    );
+
+    // Pass 2 (Feeds off Pass 1)
+    gaussian_blur u_blur_2 (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .gray_in (gray_blur_pass1),
+        .de      (de),
+        .gray_out(gray_blur) 
+    );
+
+    // ---------------------------------------------------------------
+    // 3. Sobel Edge Detector (Unblurred / Noisy)
+    // Fed directly by the raw RGB camera feed
+    // ---------------------------------------------------------------
+    
+    // Map SW[9:4] (0 to 63) to an 8-bit threshold (0 to 252)
+    wire [7:0] sobel_thresh = {SW[9:4], 2'b00};
+    wire [7:0] sobel_blur;
+
+    sobel_edge_detector u_sobel_raw (
+        .clk     (clk),
+        .rst_n   (rst_n),
+        .gray_in    (gray_blur),
+        .de_in      (de),
+        .threshold   (sobel_thresh),
+        .mag_out(sobel_blur)
+    );
+
+
+    // ---------------------------------------------------------------
+    // 5. Output Multiplexer (SW[2:0] Control)
+    // ---------------------------------------------------------------
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            {r_out, g_out, b_out} <= 24'd0;
+        end else begin
+            case (SW[2:0])
+                // Mode 0: Raw RGB Camera Feed (Passthrough)
+                3'b000: begin
+                    r_out <= r_in;
+                    g_out <= g_in;
+                    b_out <= b_in;
+                end
+                
+                // Mode 1: Grayscale Only
+                3'b001: begin
+                    r_out <= gray_blur_pass1; // Show intermediate blur to verify it's working
+                    g_out <= gray_blur_pass1;
+                    b_out <= gray_blur_pass1;
+                end
+                
+                // Mode 2: Gaussian Blur Only
+                3'b011: begin
+                    r_out <= gray_blur;
+                    g_out <= gray_blur;
+                    b_out <= gray_blur;
+                end
+                
+                // Mode 4: Blurred Sobel (Canny Edges)
+                3'b110: begin
+                    r_out <= sobel_blur;
+                    g_out <= sobel_blur;
+                    b_out <= sobel_blur;
+                end
+                
+                // Default: Fallback to Raw RGB
+                default: begin
+                    r_out <= r_in;
+                    g_out <= g_in;
+                    b_out <= b_in;
+                end
+            endcase
+        end
+    end
+
+endmodule

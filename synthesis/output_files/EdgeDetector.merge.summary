@@ -1,0 +1,17 @@
+Partition Merge Status : Successful - Tue Apr 07 01:26:31 2026
+Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Standard Edition
+Revision Name : EdgeDetector
+Top-level Entity Name : EdgeDetector
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 22120
+Total pins : 121
+Total virtual pins : 0
+Total block memory bits : 138,240
+Total DSP Blocks : 4
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 2
+Total DLLs : 0

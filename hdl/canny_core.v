@@ -1,0 +1,104 @@
+// canny_core.v
+// Top-level wrapper for the Canny Edge Detection pipeline.
+
+module canny_core (
+    input  wire       clk,          // 25 MHz VGA/pixel clock
+    input  wire       rst_n,        // Active-low reset
+    input  wire [9:1] SW,           // Switches for threshold control
+    input  wire       de_in,        // Raw Data Enable from camera/VGA
+    input  wire [7:0] r_in,         // Raw Red
+    input  wire [7:0] g_in,         // Raw Green
+    input  wire [7:0] b_in,         // Raw Blue
+
+    
+    output wire       de_out,       // Final delayed Data Enable
+    output wire [7:0] canny_edge    // Final Binary Edge (0 or 255)
+);
+
+    // ---------------------------------------------------------------
+    // 1. Grayscale Conversion
+    // ---------------------------------------------------------------
+    wire [7:0] gray_w;
+    
+    grayscale u_gray (
+        .clk      (clk),
+        .rst_n    (rst_n),
+        .r_in     (r_in),
+        .g_in     (g_in),
+        .b_in     (b_in),
+        .de       (de_in),
+        .gray_out (gray_w)
+    );
+
+    // ---------------------------------------------------------------
+    // 2. Gaussian Blur (5x5)
+    // ---------------------------------------------------------------
+    wire [7:0] blur_1;
+    wire [7:0] blur_2;
+    
+    gaussian_blur u_blur (
+        .clk      (clk),
+        .rst_n    (rst_n),
+        .gray_in  (gray_w),
+        .de       (de_in),
+        .gray_out (blur_1)
+    );
+
+    gaussian_blur u_blur2 (
+        .clk      (clk),
+        .rst_n    (rst_n),
+        .gray_in  (blur_1),
+        .de       (de_in),
+        .gray_out (blur_2)
+    );    
+
+    // ---------------------------------------------------------------
+    // 3. Sobel Gradient & Direction (Merged)
+    // ---------------------------------------------------------------
+    wire [7:0] sobel_mag_w;
+    wire [1:0] sobel_dir_w;
+    wire [7:0] sobel_thresh = {SW[3:1], 5'b00000};
+    
+    sobel_gradient u_sobel (
+        .clk      (clk),
+        .rst_n    (rst_n),
+        .gray_in  (blur_w),
+        .de_in    (de_in),
+        .threshold (sobel_thresh),
+        .mag_out  (sobel_mag_w),
+        .dir_out  (sobel_dir_w)
+    );
+
+    // ---------------------------------------------------------------
+    // 4. Non-Maximum Suppression (NMS)
+    // ---------------------------------------------------------------
+    wire [7:0] nms_mag_w;
+    
+    nms u_nms (
+        .clk      (clk),
+        .rst_n    (rst_n),
+        .de_in    (de_in),
+        .mag_in   (sobel_mag_w),
+        .dir_in   (sobel_dir_w),
+        .mag_out  (nms_mag_w)
+    );
+
+    // ---------------------------------------------------------------
+    // 5. Hysteresis (Double Thresholding & Edge Tracking)
+    // ---------------------------------------------------------------
+    
+    wire [7:0] high_thresh = {SW[9:7], 5'b00000};  // Hysteresis High Threshold (e.g., 8'd100)
+    wire [7:0] low_thresh = {SW[6:4], 5'b00000};   // Hysteresis Low Threshold  (e.g., 8'd40)
+    
+    hyster u_hysteresis (
+        .clk         (clk),
+        .rst_n       (rst_n),
+        .de          (de_in),
+        .mag_in      (nms_mag_w),
+        .high_thresh (high_thresh),
+        .low_thresh  (low_thresh),
+        .edge_out    (canny_edge)
+    );
+
+
+endmodule
