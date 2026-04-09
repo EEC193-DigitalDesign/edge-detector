@@ -3,99 +3,99 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup 'MIPI_PIXEL_CLK'
-Slack : -9.982
-TNS   : -1544.616
+Slack : -10.985
+TNS   : -336597.425
 
 Type  : Slow 1100mV 85C Model Setup 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -7.203
-TNS   : -1215.095
+Slack : -7.362
+TNS   : -1171.073
 
 Type  : Slow 1100mV 85C Model Setup 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -4.794
-TNS   : -862.986
+Slack : -4.633
+TNS   : -871.846
 
 Type  : Slow 1100mV 85C Model Setup 'CLOCK2_50'
-Slack : -4.094
-TNS   : -225.764
+Slack : -4.399
+TNS   : -245.574
 
 Type  : Slow 1100mV 85C Model Setup 'RESET_DELAY:u2|oREADY'
-Slack : -4.012
-TNS   : -4.012
+Slack : -4.166
+TNS   : -4.166
 
 Type  : Slow 1100mV 85C Model Setup 'MIPI_PIXEL_HS'
-Slack : -0.164
-TNS   : -0.608
+Slack : -0.165
+TNS   : -0.502
 
 Type  : Slow 1100mV 85C Model Hold 'MIPI_PIXEL_CLK'
-Slack : -0.244
-TNS   : -1.212
+Slack : -0.224
+TNS   : -0.668
 
 Type  : Slow 1100mV 85C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.289
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Hold 'CLOCK2_50'
-Slack : 0.369
-TNS   : 0.000
-
-Type  : Slow 1100mV 85C Model Hold 'MIPI_PIXEL_HS'
-Slack : 0.417
+Slack : 0.241
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.419
+Slack : 0.267
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'MIPI_PIXEL_HS'
+Slack : 0.273
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'CLOCK2_50'
+Slack : 0.370
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Hold 'RESET_DELAY:u2|oREADY'
-Slack : 0.920
+Slack : 1.115
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Recovery 'MIPI_PIXEL_CLK'
-Slack : -7.089
-TNS   : -457.773
+Slack : -8.317
+TNS   : -5933.471
 
 Type  : Slow 1100mV 85C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -1.981
-TNS   : -160.798
+Slack : -2.629
+TNS   : -245.278
 
 Type  : Slow 1100mV 85C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -1.945
-TNS   : -150.766
-
-Type  : Slow 1100mV 85C Model Removal 'MIPI_PIXEL_CLK'
-Slack : 0.700
-TNS   : 0.000
+Slack : -1.952
+TNS   : -147.856
 
 Type  : Slow 1100mV 85C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.803
+Slack : 0.710
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.898
+Slack : 0.989
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Removal 'MIPI_PIXEL_CLK'
+Slack : 1.108
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'MIPI_PIXEL_CLK'
-Slack : -2.174
-TNS   : -2332.812
+Slack : -2.225
+TNS   : -40939.253
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK2_50'
-Slack : -0.639
-TNS   : -59.895
+Slack : -0.637
+TNS   : -64.069
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -0.438
-TNS   : -186.099
+Slack : -0.394
+TNS   : -182.506
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
 Slack : -0.394
-TNS   : -147.230
+TNS   : -159.274
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'MIPI_PIXEL_HS'
 Slack : -0.394
-TNS   : -3.042
+TNS   : -3.122
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'RESET_DELAY:u2|oREADY'
-Slack : 0.095
+Slack : 0.338
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
@@ -107,99 +107,99 @@ Slack : 9.670
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Setup 'MIPI_PIXEL_CLK'
-Slack : -9.572
-TNS   : -1462.785
+Slack : -11.025
+TNS   : -326553.164
 
 Type  : Slow 1100mV 0C Model Setup 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -7.199
-TNS   : -1176.456
+Slack : -7.300
+TNS   : -1133.222
 
 Type  : Slow 1100mV 0C Model Setup 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -4.772
-TNS   : -831.271
+Slack : -4.575
+TNS   : -849.715
 
 Type  : Slow 1100mV 0C Model Setup 'CLOCK2_50'
-Slack : -3.979
-TNS   : -221.783
+Slack : -4.264
+TNS   : -240.158
 
 Type  : Slow 1100mV 0C Model Setup 'RESET_DELAY:u2|oREADY'
-Slack : -3.968
-TNS   : -3.968
+Slack : -4.135
+TNS   : -4.135
 
 Type  : Slow 1100mV 0C Model Setup 'MIPI_PIXEL_HS'
 Slack : -0.208
-TNS   : -0.731
+TNS   : -0.674
 
 Type  : Slow 1100mV 0C Model Hold 'MIPI_PIXEL_CLK'
-Slack : -0.244
-TNS   : -1.615
+Slack : -0.200
+TNS   : -0.680
 
 Type  : Slow 1100mV 0C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.291
-TNS   : 0.000
-
-Type  : Slow 1100mV 0C Model Hold 'CLOCK2_50'
-Slack : 0.368
+Slack : 0.232
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'MIPI_PIXEL_HS'
-Slack : 0.389
+Slack : 0.253
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.436
+Slack : 0.266
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'CLOCK2_50'
+Slack : 0.371
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'RESET_DELAY:u2|oREADY'
-Slack : 0.880
+Slack : 1.092
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Recovery 'MIPI_PIXEL_CLK'
-Slack : -6.566
-TNS   : -423.737
+Slack : -7.732
+TNS   : -5530.785
 
 Type  : Slow 1100mV 0C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -1.889
-TNS   : -152.159
+Slack : -2.474
+TNS   : -230.687
 
 Type  : Slow 1100mV 0C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -1.875
-TNS   : -145.060
+Slack : -1.887
+TNS   : -141.993
 
 Type  : Slow 1100mV 0C Model Removal 'MIPI_PIXEL_CLK'
-Slack : 0.319
+Slack : 0.650
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.707
+Slack : 0.670
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.781
+Slack : 0.976
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'MIPI_PIXEL_CLK'
-Slack : -2.174
-TNS   : -2327.553
+Slack : -2.225
+TNS   : -40715.275
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK2_50'
-Slack : -0.648
-TNS   : -54.723
+Slack : -0.637
+TNS   : -58.588
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
 Slack : -0.394
-TNS   : -176.746
+TNS   : -177.423
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
 Slack : -0.394
-TNS   : -140.969
+TNS   : -155.193
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'MIPI_PIXEL_HS'
 Slack : -0.394
-TNS   : -2.984
+TNS   : -3.093
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'RESET_DELAY:u2|oREADY'
-Slack : 0.095
+Slack : 0.310
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
@@ -211,99 +211,99 @@ Slack : 9.673
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Setup 'MIPI_PIXEL_CLK'
-Slack : -5.794
-TNS   : -796.603
+Slack : -6.447
+TNS   : -197472.980
 
 Type  : Fast 1100mV 85C Model Setup 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -4.050
-TNS   : -673.391
+Slack : -4.180
+TNS   : -642.394
 
 Type  : Fast 1100mV 85C Model Setup 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -2.673
-TNS   : -447.929
+Slack : -2.601
+TNS   : -449.572
 
 Type  : Fast 1100mV 85C Model Setup 'CLOCK2_50'
-Slack : -2.466
-TNS   : -95.640
+Slack : -2.542
+TNS   : -107.563
 
 Type  : Fast 1100mV 85C Model Setup 'RESET_DELAY:u2|oREADY'
-Slack : -2.279
-TNS   : -2.279
+Slack : -2.401
+TNS   : -2.401
 
 Type  : Fast 1100mV 85C Model Setup 'MIPI_PIXEL_HS'
-Slack : 0.330
+Slack : 0.306
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'MIPI_PIXEL_CLK'
-Slack : -0.150
-TNS   : -0.854
-
-Type  : Fast 1100mV 85C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.100
-TNS   : 0.000
+Slack : -0.152
+TNS   : -0.496
 
 Type  : Fast 1100mV 85C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
+Slack : 0.076
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
+Slack : 0.081
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'MIPI_PIXEL_HS'
 Slack : 0.156
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'CLOCK2_50'
-Slack : 0.197
-TNS   : 0.000
-
-Type  : Fast 1100mV 85C Model Hold 'MIPI_PIXEL_HS'
-Slack : 0.215
+Slack : 0.185
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Hold 'RESET_DELAY:u2|oREADY'
-Slack : 0.276
+Slack : 0.429
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Recovery 'MIPI_PIXEL_CLK'
-Slack : -5.765
-TNS   : -373.111
-
-Type  : Fast 1100mV 85C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -1.287
-TNS   : -98.997
+Slack : -6.801
+TNS   : -4585.061
 
 Type  : Fast 1100mV 85C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -0.935
-TNS   : -75.461
+Slack : -1.529
+TNS   : -138.342
 
-Type  : Fast 1100mV 85C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.256
-TNS   : 0.000
+Type  : Fast 1100mV 85C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
+Slack : -1.312
+TNS   : -98.246
 
 Type  : Fast 1100mV 85C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.422
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
+Slack : 0.542
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Removal 'MIPI_PIXEL_CLK'
-Slack : 1.321
+Slack : 1.537
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'MIPI_PIXEL_CLK'
 Slack : -2.174
-TNS   : -2551.778
+TNS   : -43108.613
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK2_50'
-Slack : -0.685
-TNS   : -40.640
+Slack : -0.698
+TNS   : -43.791
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'MIPI_PIXEL_HS'
-Slack : -0.545
-TNS   : -3.754
-
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -0.185
-TNS   : -14.032
+Slack : -0.579
+TNS   : -4.077
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -0.097
-TNS   : -4.183
+Slack : -0.108
+TNS   : -10.387
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
+Slack : -0.092
+TNS   : -9.550
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'RESET_DELAY:u2|oREADY'
-Slack : 0.089
+Slack : 0.304
 TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'
@@ -315,99 +315,99 @@ Slack : 9.336
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Setup 'MIPI_PIXEL_CLK'
-Slack : -5.179
-TNS   : -673.121
+Slack : -5.850
+TNS   : -171360.349
 
 Type  : Fast 1100mV 0C Model Setup 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -3.615
-TNS   : -585.095
+Slack : -3.712
+TNS   : -558.356
 
 Type  : Fast 1100mV 0C Model Setup 'RESET_DELAY:u2|oREADY'
-Slack : -2.345
-TNS   : -2.345
+Slack : -2.467
+TNS   : -2.467
 
 Type  : Fast 1100mV 0C Model Setup 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -2.307
-TNS   : -389.253
+Slack : -2.253
+TNS   : -392.251
 
 Type  : Fast 1100mV 0C Model Setup 'CLOCK2_50'
-Slack : -2.112
-TNS   : -81.396
+Slack : -2.186
+TNS   : -91.319
 
 Type  : Fast 1100mV 0C Model Setup 'MIPI_PIXEL_HS'
-Slack : 0.355
+Slack : 0.353
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'MIPI_PIXEL_CLK'
-Slack : -0.169
-TNS   : -1.799
+Slack : -0.179
+TNS   : -1.171
 
 Type  : Fast 1100mV 0C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.085
+Slack : 0.060
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
+Slack : 0.071
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'MIPI_PIXEL_HS'
 Slack : 0.141
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'CLOCK2_50'
-Slack : 0.188
-TNS   : 0.000
-
-Type  : Fast 1100mV 0C Model Hold 'MIPI_PIXEL_HS'
-Slack : 0.205
+Slack : 0.178
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Hold 'RESET_DELAY:u2|oREADY'
-Slack : 0.341
+Slack : 0.488
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Recovery 'MIPI_PIXEL_CLK'
-Slack : -4.726
-TNS   : -305.477
-
-Type  : Fast 1100mV 0C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -1.095
-TNS   : -84.016
+Slack : -5.568
+TNS   : -3787.965
 
 Type  : Fast 1100mV 0C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -0.797
-TNS   : -63.030
+Slack : -1.284
+TNS   : -116.916
 
-Type  : Fast 1100mV 0C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.168
-TNS   : 0.000
+Type  : Fast 1100mV 0C Model Recovery 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
+Slack : -1.104
+TNS   : -82.335
 
 Type  : Fast 1100mV 0C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : 0.325
+Slack : 0.273
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Removal 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
+Slack : 0.422
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Removal 'MIPI_PIXEL_CLK'
-Slack : 0.816
+Slack : 0.932
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'MIPI_PIXEL_CLK'
 Slack : -2.174
-TNS   : -2611.763
+TNS   : -48430.878
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK2_50'
-Slack : -0.719
-TNS   : -48.519
+Slack : -0.721
+TNS   : -52.051
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'MIPI_PIXEL_HS'
-Slack : -0.588
-TNS   : -4.284
-
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -0.096
-TNS   : -3.012
+Slack : -0.613
+TNS   : -4.512
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ'
-Slack : -0.030
-TNS   : -0.385
+Slack : -0.047
+TNS   : -2.335
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ'
+Slack : -0.041
+TNS   : -2.166
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'RESET_DELAY:u2|oREADY'
-Slack : 0.160
+Slack : 0.318
 TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]'

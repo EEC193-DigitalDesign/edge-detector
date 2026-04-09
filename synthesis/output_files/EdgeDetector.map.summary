@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Tue Apr 07 05:56:55 2026
+Analysis & Synthesis Status : Successful - Tue Apr 07 19:18:49 2026
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Standard Edition
 Revision Name : EdgeDetector
 Top-level Entity Name : EdgeDetector
 Family : Cyclone V
 Logic utilization (in ALMs) : N/A
-Total registers : 624
+Total registers : 46078
 Total pins : 121
 Total virtual pins : 0
-Total block memory bits : 124,800
-Total DSP Blocks : 0
+Total block memory bits : 145,280
+Total DSP Blocks : 2
 Total HSSI RX PCSs : 0
 Total HSSI PMA RX Deserializers : 0
 Total HSSI TX PCSs : 0

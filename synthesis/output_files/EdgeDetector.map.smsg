@@ -1,2 +1,3 @@
+Warning (10268): Verilog HDL information at sobel_gradient.v(88): always construct contains both blocking and non-blocking assignments File: C:/Users/5811m/Documents/SeniorD/LABS/edgeDetector/hdl/sobel_gradient.v Line: 88
 Info (10281): Verilog HDL Declaration information at AUTO_SYNC_MODIFY.v(4): object "VS" differs only in case from object "vs" in the same scope File: C:/Users/5811m/Documents/SeniorD/LABS/edgeDetector/synthesis/V_Auto/AUTO_SYNC_MODIFY.v Line: 4
 Info (10281): Verilog HDL Declaration information at AUTO_SYNC_MODIFY.v(5): object "HS" differs only in case from object "hs" in the same scope File: C:/Users/5811m/Documents/SeniorD/LABS/edgeDetector/synthesis/V_Auto/AUTO_SYNC_MODIFY.v Line: 5

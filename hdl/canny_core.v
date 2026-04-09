@@ -35,12 +35,15 @@ module canny_core (
     // ---------------------------------------------------------------
     wire [7:0] blur_1;
     wire [7:0] blur_2;
+    wire       de_blur1;
+    wire       de_blur2;
     
     gaussian_blur u_blur (
         .clk      (clk),
         .rst_n    (rst_n),
         .gray_in  (gray_w),
-        .de       (de_in),
+        .de_in       (de_in),
+        .de_out      (de_blur1),
         .gray_out (blur_1)
     );
 
@@ -48,7 +51,8 @@ module canny_core (
         .clk      (clk),
         .rst_n    (rst_n),
         .gray_in  (blur_1),
-        .de       (de_in),
+        .de_in       (de_blur1),
+        .de_out      (de_blur2),
         .gray_out (blur_2)
     );    
 
@@ -57,30 +61,34 @@ module canny_core (
     // ---------------------------------------------------------------
     wire [7:0] sobel_mag_w;
     wire [1:0] sobel_dir_w;
+    wire       de_sobel_w;
     wire [7:0] sobel_thresh = {SW[3:1], 5'b00000};
     
     sobel_gradient u_sobel (
         .clk      (clk),
         .rst_n    (rst_n),
-        .gray_in  (blur_w),
-        .de_in    (de_in),
+        .gray_in  (blur_2),
+        .de_in    (de_blur2),
         .threshold (sobel_thresh),
         .mag_out  (sobel_mag_w),
-        .dir_out  (sobel_dir_w)
+        .dir_out  (sobel_dir_w),
+        .de_out   (de_sobel_w)
     );
 
     // ---------------------------------------------------------------
     // 4. Non-Maximum Suppression (NMS)
     // ---------------------------------------------------------------
     wire [7:0] nms_mag_w;
+    wire       de_nms_w;
     
     nms u_nms (
         .clk      (clk),
         .rst_n    (rst_n),
-        .de_in    (de_in),
+        .de_in    (de_sobel_w),
         .mag_in   (sobel_mag_w),
         .dir_in   (sobel_dir_w),
-        .mag_out  (nms_mag_w)
+        .mag_out  (nms_mag_w),
+        .de_out   (de_nms_w)
     );
 
     // ---------------------------------------------------------------
@@ -93,11 +101,12 @@ module canny_core (
     hyster u_hysteresis (
         .clk         (clk),
         .rst_n       (rst_n),
-        .de          (de_in),
+        .de          (de_nms_w),
         .mag_in      (nms_mag_w),
         .high_thresh (high_thresh),
         .low_thresh  (low_thresh),
-        .edge_out    (canny_edge)
+        .edge_out    (canny_edge),
+        .de_out       (de_out)
     );
 
 

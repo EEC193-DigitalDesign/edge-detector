@@ -9,6 +9,8 @@ module hyster (
     input  wire [7:0] mag_in,       // 8-bit gradient magnitude input
     input  wire [7:0] high_thresh,  // Upper threshold for strong edges
     input  wire [7:0] low_thresh,   // Lower threshold for weak edges
+
+    output reg        de_out,       // Data enable out (aligned with center pixel)
     output reg  [7:0] edge_out      // Final binary edge (0 or 255)
 );
 
@@ -47,17 +49,23 @@ module hyster (
     
     reg [7:0] p00, p01, p02; 
     reg [7:0] p10, p11, p12; 
-    reg [7:0] p20, p21, p22; 
+    reg [7:0] p20, p21, p22;
+
+    reg de_shift; 
 
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
+            de_shift <= 1'b0;
             {p00, p01, p02} <= 24'd0;
             {p10, p11, p12} <= 24'd0;
             {p20, p21, p22} <= 24'd0;
-        end else if (de) begin
-            p02 <= p01; p01 <= p00; p00 <= lb1_data;
-            p12 <= p11; p11 <= p10; p10 <= lb0_data;
-            p22 <= p21; p21 <= p20; p20 <= mag_in;
+        end else begin
+            de_shift <= de;
+            if (de) begin
+                p02 <= p01; p01 <= p00; p00 <= lb1_data;
+                p12 <= p11; p11 <= p10; p10 <= lb0_data;
+                p22 <= p21; p21 <= p20; p20 <= mag_in;
+            end
         end
     end
 
@@ -83,8 +91,10 @@ module hyster (
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             edge_out <= 8'd0;
-        end else if (de) begin
+            de_out   <= 1'b0;
+        end else begin
             edge_out <= final_pixel ? 8'd255 : 8'd0;
+            de_out <= de_shift; // Align DE with the center pixel (p11)
         end
     end
 

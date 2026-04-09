@@ -1,0 +1,1 @@
+Save all ModelSim project files in this directory. If you have multiple ModelSim projects, create multiple sub-directories here (i.e. simulation/tb_majority/, simulation/tb_partI/, simulation/tb_partII/, etc.).

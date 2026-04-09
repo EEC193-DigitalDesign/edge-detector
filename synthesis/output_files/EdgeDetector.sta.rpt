@@ -1,5 +1,5 @@
 Timing Analyzer report for EdgeDetector
-Tue Apr 07 05:59:31 2026
+Tue Apr 07 19:35:57 2026
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Standard Edition
 
 
@@ -102,22 +102,22 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 16          ;
 ; Maximum allowed            ; 12          ;
 ;                            ;             ;
-; Average used               ; 1.98        ;
+; Average used               ; 4.65        ;
 ; Maximum used               ; 12          ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  10.9%      ;
-;     Processor 3            ;  10.7%      ;
-;     Processor 4            ;  10.5%      ;
-;     Processor 5            ;   8.2%      ;
-;     Processor 6            ;   8.2%      ;
-;     Processor 7            ;   8.2%      ;
-;     Processor 8            ;   8.2%      ;
-;     Processor 9            ;   8.2%      ;
-;     Processor 10           ;   8.2%      ;
-;     Processor 11           ;   8.2%      ;
-;     Processor 12           ;   8.2%      ;
+;     Processor 2            ;  57.9%      ;
+;     Processor 3            ;  57.7%      ;
+;     Processor 4            ;  57.6%      ;
+;     Processor 5            ;  24.0%      ;
+;     Processor 6            ;  24.0%      ;
+;     Processor 7            ;  24.0%      ;
+;     Processor 8            ;  24.0%      ;
+;     Processor 9            ;  24.0%      ;
+;     Processor 10           ;  24.0%      ;
+;     Processor 11           ;  24.0%      ;
+;     Processor 12           ;  24.0%      ;
 +----------------------------+-------------+
 
 
@@ -143,11 +143,11 @@ https://fpgasoftware.intel.com/eula.
 +------------+-----------------+----------------------------------------------------------------------------+------------------------------------------------------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                                 ; Note                                                 ;
 +------------+-----------------+----------------------------------------------------------------------------+------------------------------------------------------+
-; 107.25 MHz ; 107.25 MHz      ; MIPI_PIXEL_CLK                                                             ;                                                      ;
-; 121.91 MHz ; 121.91 MHz      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ;                                                      ;
-; 172.59 MHz ; 172.59 MHz      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ;                                                      ;
-; 196.31 MHz ; 196.31 MHz      ; CLOCK2_50                                                                  ;                                                      ;
-; 859.11 MHz ; 574.71 MHz      ; MIPI_PIXEL_HS                                                              ; limit due to low minimum pulse width violation (tcl) ;
+; 85.19 MHz  ; 85.19 MHz       ; MIPI_PIXEL_CLK                                                             ;                                                      ;
+; 119.59 MHz ; 119.59 MHz      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ;                                                      ;
+; 177.53 MHz ; 177.53 MHz      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ;                                                      ;
+; 185.22 MHz ; 185.22 MHz      ; CLOCK2_50                                                                  ;                                                      ;
+; 858.37 MHz ; 561.8 MHz       ; MIPI_PIXEL_HS                                                              ; limit due to low minimum pulse width violation (tcl) ;
 +------------+-----------------+----------------------------------------------------------------------------+------------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -158,18 +158,18 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 HTML report is unavailable in plain text report export.
 
 
-+-----------------------------------------------------------------------------------------------------+
-; Slow 1100mV 85C Model Setup Summary                                                                 ;
-+----------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                      ; Slack  ; End Point TNS ;
-+----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -9.982 ; -1544.616     ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -7.203 ; -1215.095     ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -4.794 ; -862.986      ;
-; CLOCK2_50                                                                  ; -4.094 ; -225.764      ;
-; RESET_DELAY:u2|oREADY                                                      ; -4.012 ; -4.012        ;
-; MIPI_PIXEL_HS                                                              ; -0.164 ; -0.608        ;
-+----------------------------------------------------------------------------+--------+---------------+
++------------------------------------------------------------------------------------------------------+
+; Slow 1100mV 85C Model Setup Summary                                                                  ;
++----------------------------------------------------------------------------+---------+---------------+
+; Clock                                                                      ; Slack   ; End Point TNS ;
++----------------------------------------------------------------------------+---------+---------------+
+; MIPI_PIXEL_CLK                                                             ; -10.985 ; -336597.425   ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -7.362  ; -1171.073     ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -4.633  ; -871.846      ;
+; CLOCK2_50                                                                  ; -4.399  ; -245.574      ;
+; RESET_DELAY:u2|oREADY                                                      ; -4.166  ; -4.166        ;
+; MIPI_PIXEL_HS                                                              ; -0.165  ; -0.502        ;
++----------------------------------------------------------------------------+---------+---------------+
 
 
 +-----------------------------------------------------------------------------------------------------+
@@ -177,12 +177,12 @@ HTML report is unavailable in plain text report export.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -0.244 ; -1.212        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.289  ; 0.000         ;
-; CLOCK2_50                                                                  ; 0.369  ; 0.000         ;
-; MIPI_PIXEL_HS                                                              ; 0.417  ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.419  ; 0.000         ;
-; RESET_DELAY:u2|oREADY                                                      ; 0.920  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -0.224 ; -0.668        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.241  ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.267  ; 0.000         ;
+; MIPI_PIXEL_HS                                                              ; 0.273  ; 0.000         ;
+; CLOCK2_50                                                                  ; 0.370  ; 0.000         ;
+; RESET_DELAY:u2|oREADY                                                      ; 1.115  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -191,9 +191,9 @@ HTML report is unavailable in plain text report export.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -7.089 ; -457.773      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -1.981 ; -160.798      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -1.945 ; -150.766      ;
+; MIPI_PIXEL_CLK                                                             ; -8.317 ; -5933.471     ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -2.629 ; -245.278      ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -1.952 ; -147.856      ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -202,9 +202,9 @@ HTML report is unavailable in plain text report export.
 +----------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                      ; Slack ; End Point TNS ;
 +----------------------------------------------------------------------------+-------+---------------+
-; MIPI_PIXEL_CLK                                                             ; 0.700 ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.803 ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.898 ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.710 ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.989 ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; 1.108 ; 0.000         ;
 +----------------------------------------------------------------------------+-------+---------------+
 
 
@@ -213,12 +213,12 @@ HTML report is unavailable in plain text report export.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -2.174 ; -2332.812     ;
-; CLOCK2_50                                                                  ; -0.639 ; -59.895       ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.438 ; -186.099      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -0.394 ; -147.230      ;
-; MIPI_PIXEL_HS                                                              ; -0.394 ; -3.042        ;
-; RESET_DELAY:u2|oREADY                                                      ; 0.095  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -2.225 ; -40939.253    ;
+; CLOCK2_50                                                                  ; -0.637 ; -64.069       ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.394 ; -182.506      ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -0.394 ; -159.274      ;
+; MIPI_PIXEL_HS                                                              ; -0.394 ; -3.122        ;
+; RESET_DELAY:u2|oREADY                                                      ; 0.338  ; 0.000         ;
 ; ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]     ; 1.666  ; 0.000         ;
 ; CLOCK_50                                                                   ; 9.670  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
@@ -235,27 +235,27 @@ No synchronizer chains to report.
 +------------+-----------------+----------------------------------------------------------------------------+------------------------------------------------------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                                 ; Note                                                 ;
 +------------+-----------------+----------------------------------------------------------------------------+------------------------------------------------------+
-; 111.73 MHz ; 111.73 MHz      ; MIPI_PIXEL_CLK                                                             ;                                                      ;
-; 121.97 MHz ; 121.97 MHz      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ;                                                      ;
-; 173.25 MHz ; 173.25 MHz      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ;                                                      ;
-; 200.84 MHz ; 200.84 MHz      ; CLOCK2_50                                                                  ;                                                      ;
-; 827.81 MHz ; 584.11 MHz      ; MIPI_PIXEL_HS                                                              ; limit due to low minimum pulse width violation (tcl) ;
+; 83.16 MHz  ; 83.16 MHz       ; MIPI_PIXEL_CLK                                                             ;                                                      ;
+; 120.48 MHz ; 120.48 MHz      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ;                                                      ;
+; 179.37 MHz ; 179.37 MHz      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ;                                                      ;
+; 189.97 MHz ; 189.97 MHz      ; CLOCK2_50                                                                  ;                                                      ;
+; 827.81 MHz ; 565.61 MHz      ; MIPI_PIXEL_HS                                                              ; limit due to low minimum pulse width violation (tcl) ;
 +------------+-----------------+----------------------------------------------------------------------------+------------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
 
-+-----------------------------------------------------------------------------------------------------+
-; Slow 1100mV 0C Model Setup Summary                                                                  ;
-+----------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                      ; Slack  ; End Point TNS ;
-+----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -9.572 ; -1462.785     ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -7.199 ; -1176.456     ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -4.772 ; -831.271      ;
-; CLOCK2_50                                                                  ; -3.979 ; -221.783      ;
-; RESET_DELAY:u2|oREADY                                                      ; -3.968 ; -3.968        ;
-; MIPI_PIXEL_HS                                                              ; -0.208 ; -0.731        ;
-+----------------------------------------------------------------------------+--------+---------------+
++------------------------------------------------------------------------------------------------------+
+; Slow 1100mV 0C Model Setup Summary                                                                   ;
++----------------------------------------------------------------------------+---------+---------------+
+; Clock                                                                      ; Slack   ; End Point TNS ;
++----------------------------------------------------------------------------+---------+---------------+
+; MIPI_PIXEL_CLK                                                             ; -11.025 ; -326553.164   ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -7.300  ; -1133.222     ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -4.575  ; -849.715      ;
+; CLOCK2_50                                                                  ; -4.264  ; -240.158      ;
+; RESET_DELAY:u2|oREADY                                                      ; -4.135  ; -4.135        ;
+; MIPI_PIXEL_HS                                                              ; -0.208  ; -0.674        ;
++----------------------------------------------------------------------------+---------+---------------+
 
 
 +-----------------------------------------------------------------------------------------------------+
@@ -263,12 +263,12 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -0.244 ; -1.615        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.291  ; 0.000         ;
-; CLOCK2_50                                                                  ; 0.368  ; 0.000         ;
-; MIPI_PIXEL_HS                                                              ; 0.389  ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.436  ; 0.000         ;
-; RESET_DELAY:u2|oREADY                                                      ; 0.880  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -0.200 ; -0.680        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.232  ; 0.000         ;
+; MIPI_PIXEL_HS                                                              ; 0.253  ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.266  ; 0.000         ;
+; CLOCK2_50                                                                  ; 0.371  ; 0.000         ;
+; RESET_DELAY:u2|oREADY                                                      ; 1.092  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -277,9 +277,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -6.566 ; -423.737      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -1.889 ; -152.159      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -1.875 ; -145.060      ;
+; MIPI_PIXEL_CLK                                                             ; -7.732 ; -5530.785     ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -2.474 ; -230.687      ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -1.887 ; -141.993      ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -288,9 +288,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                      ; Slack ; End Point TNS ;
 +----------------------------------------------------------------------------+-------+---------------+
-; MIPI_PIXEL_CLK                                                             ; 0.319 ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.707 ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.781 ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; 0.650 ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.670 ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.976 ; 0.000         ;
 +----------------------------------------------------------------------------+-------+---------------+
 
 
@@ -299,12 +299,12 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -2.174 ; -2327.553     ;
-; CLOCK2_50                                                                  ; -0.648 ; -54.723       ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.394 ; -176.746      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -0.394 ; -140.969      ;
-; MIPI_PIXEL_HS                                                              ; -0.394 ; -2.984        ;
-; RESET_DELAY:u2|oREADY                                                      ; 0.095  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -2.225 ; -40715.275    ;
+; CLOCK2_50                                                                  ; -0.637 ; -58.588       ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.394 ; -177.423      ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -0.394 ; -155.193      ;
+; MIPI_PIXEL_HS                                                              ; -0.394 ; -3.093        ;
+; RESET_DELAY:u2|oREADY                                                      ; 0.310  ; 0.000         ;
 ; ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]     ; 1.666  ; 0.000         ;
 ; CLOCK_50                                                                   ; 9.673  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
@@ -321,12 +321,12 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -5.794 ; -796.603      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -4.050 ; -673.391      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -2.673 ; -447.929      ;
-; CLOCK2_50                                                                  ; -2.466 ; -95.640       ;
-; RESET_DELAY:u2|oREADY                                                      ; -2.279 ; -2.279        ;
-; MIPI_PIXEL_HS                                                              ; 0.330  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -6.447 ; -197472.980   ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -4.180 ; -642.394      ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -2.601 ; -449.572      ;
+; CLOCK2_50                                                                  ; -2.542 ; -107.563      ;
+; RESET_DELAY:u2|oREADY                                                      ; -2.401 ; -2.401        ;
+; MIPI_PIXEL_HS                                                              ; 0.306  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -335,12 +335,12 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -0.150 ; -0.854        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.100  ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.156  ; 0.000         ;
-; CLOCK2_50                                                                  ; 0.197  ; 0.000         ;
-; MIPI_PIXEL_HS                                                              ; 0.215  ; 0.000         ;
-; RESET_DELAY:u2|oREADY                                                      ; 0.276  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -0.152 ; -0.496        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.076  ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.081  ; 0.000         ;
+; MIPI_PIXEL_HS                                                              ; 0.156  ; 0.000         ;
+; CLOCK2_50                                                                  ; 0.185  ; 0.000         ;
+; RESET_DELAY:u2|oREADY                                                      ; 0.429  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -349,9 +349,9 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -5.765 ; -373.111      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -1.287 ; -98.997       ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.935 ; -75.461       ;
+; MIPI_PIXEL_CLK                                                             ; -6.801 ; -4585.061     ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -1.529 ; -138.342      ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -1.312 ; -98.246       ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -360,9 +360,9 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                      ; Slack ; End Point TNS ;
 +----------------------------------------------------------------------------+-------+---------------+
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.256 ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.422 ; 0.000         ;
-; MIPI_PIXEL_CLK                                                             ; 1.321 ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.355 ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.542 ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; 1.537 ; 0.000         ;
 +----------------------------------------------------------------------------+-------+---------------+
 
 
@@ -371,12 +371,12 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -2.174 ; -2551.778     ;
-; CLOCK2_50                                                                  ; -0.685 ; -40.640       ;
-; MIPI_PIXEL_HS                                                              ; -0.545 ; -3.754        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.185 ; -14.032       ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -0.097 ; -4.183        ;
-; RESET_DELAY:u2|oREADY                                                      ; 0.089  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -2.174 ; -43108.613    ;
+; CLOCK2_50                                                                  ; -0.698 ; -43.791       ;
+; MIPI_PIXEL_HS                                                              ; -0.579 ; -4.077        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -0.108 ; -10.387       ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.092 ; -9.550        ;
+; RESET_DELAY:u2|oREADY                                                      ; 0.304  ; 0.000         ;
 ; ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]     ; 1.666  ; 0.000         ;
 ; CLOCK_50                                                                   ; 9.336  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
@@ -393,12 +393,12 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -5.179 ; -673.121      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -3.615 ; -585.095      ;
-; RESET_DELAY:u2|oREADY                                                      ; -2.345 ; -2.345        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -2.307 ; -389.253      ;
-; CLOCK2_50                                                                  ; -2.112 ; -81.396       ;
-; MIPI_PIXEL_HS                                                              ; 0.355  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -5.850 ; -171360.349   ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -3.712 ; -558.356      ;
+; RESET_DELAY:u2|oREADY                                                      ; -2.467 ; -2.467        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -2.253 ; -392.251      ;
+; CLOCK2_50                                                                  ; -2.186 ; -91.319       ;
+; MIPI_PIXEL_HS                                                              ; 0.353  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -407,12 +407,12 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -0.169 ; -1.799        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.085  ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.141  ; 0.000         ;
-; CLOCK2_50                                                                  ; 0.188  ; 0.000         ;
-; MIPI_PIXEL_HS                                                              ; 0.205  ; 0.000         ;
-; RESET_DELAY:u2|oREADY                                                      ; 0.341  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -0.179 ; -1.171        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.060  ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.071  ; 0.000         ;
+; MIPI_PIXEL_HS                                                              ; 0.141  ; 0.000         ;
+; CLOCK2_50                                                                  ; 0.178  ; 0.000         ;
+; RESET_DELAY:u2|oREADY                                                      ; 0.488  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -421,9 +421,9 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -4.726 ; -305.477      ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -1.095 ; -84.016       ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.797 ; -63.030       ;
+; MIPI_PIXEL_CLK                                                             ; -5.568 ; -3787.965     ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -1.284 ; -116.916      ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -1.104 ; -82.335       ;
 +----------------------------------------------------------------------------+--------+---------------+
 
 
@@ -432,9 +432,9 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                      ; Slack ; End Point TNS ;
 +----------------------------------------------------------------------------+-------+---------------+
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.168 ; 0.000         ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.325 ; 0.000         ;
-; MIPI_PIXEL_CLK                                                             ; 0.816 ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 0.273 ; 0.000         ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 0.422 ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; 0.932 ; 0.000         ;
 +----------------------------------------------------------------------------+-------+---------------+
 
 
@@ -443,12 +443,12 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                      ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------+--------+---------------+
-; MIPI_PIXEL_CLK                                                             ; -2.174 ; -2611.763     ;
-; CLOCK2_50                                                                  ; -0.719 ; -48.519       ;
-; MIPI_PIXEL_HS                                                              ; -0.588 ; -4.284        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.096 ; -3.012        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -0.030 ; -0.385        ;
-; RESET_DELAY:u2|oREADY                                                      ; 0.160  ; 0.000         ;
+; MIPI_PIXEL_CLK                                                             ; -2.174 ; -48430.878    ;
+; CLOCK2_50                                                                  ; -0.721 ; -52.051       ;
+; MIPI_PIXEL_HS                                                              ; -0.613 ; -4.512        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -0.047 ; -2.335        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -0.041 ; -2.166        ;
+; RESET_DELAY:u2|oREADY                                                      ; 0.318  ; 0.000         ;
 ; ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]     ; 1.666  ; 0.000         ;
 ; CLOCK_50                                                                   ; 9.286  ; 0.000         ;
 +----------------------------------------------------------------------------+--------+---------------+
@@ -460,30 +460,30 @@ No synchronizer chains to report.
 No synchronizer chains to report.
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------+
-; Multicorner Timing Analysis Summary                                                                                                         ;
-+-----------------------------------------------------------------------------+-----------+--------+----------+---------+---------------------+
-; Clock                                                                       ; Setup     ; Hold   ; Recovery ; Removal ; Minimum Pulse Width ;
-+-----------------------------------------------------------------------------+-----------+--------+----------+---------+---------------------+
-; Worst-case Slack                                                            ; -9.982    ; -0.244 ; -7.089   ; 0.168   ; -2.174              ;
-;  CLOCK2_50                                                                  ; -4.094    ; 0.188  ; N/A      ; N/A     ; -0.719              ;
-;  CLOCK_50                                                                   ; N/A       ; N/A    ; N/A      ; N/A     ; 9.286               ;
-;  MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -4.794    ; 0.141  ; -1.945   ; 0.325   ; -0.394              ;
-;  MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -7.203    ; 0.085  ; -1.981   ; 0.168   ; -0.438              ;
-;  MIPI_PIXEL_CLK                                                             ; -9.982    ; -0.244 ; -7.089   ; 0.319   ; -2.174              ;
-;  MIPI_PIXEL_HS                                                              ; -0.208    ; 0.205  ; N/A      ; N/A     ; -0.588              ;
-;  RESET_DELAY:u2|oREADY                                                      ; -4.012    ; 0.276  ; N/A      ; N/A     ; 0.089               ;
-;  ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]     ; N/A       ; N/A    ; N/A      ; N/A     ; 1.666               ;
-; Design-wide TNS                                                             ; -3853.081 ; -1.799 ; -769.337 ; 0.0     ; -2729.078           ;
-;  CLOCK2_50                                                                  ; -225.764  ; 0.000  ; N/A      ; N/A     ; -59.895             ;
-;  CLOCK_50                                                                   ; N/A       ; N/A    ; N/A      ; N/A     ; 0.000               ;
-;  MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -862.986  ; 0.000  ; -150.766 ; 0.000   ; -147.230            ;
-;  MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -1215.095 ; 0.000  ; -160.798 ; 0.000   ; -186.099            ;
-;  MIPI_PIXEL_CLK                                                             ; -1544.616 ; -1.799 ; -457.773 ; 0.000   ; -2611.763           ;
-;  MIPI_PIXEL_HS                                                              ; -0.731    ; 0.000  ; N/A      ; N/A     ; -4.284              ;
-;  RESET_DELAY:u2|oREADY                                                      ; -4.012    ; 0.000  ; N/A      ; N/A     ; 0.000               ;
-;  ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]     ; N/A       ; N/A    ; N/A      ; N/A     ; 0.000               ;
-+-----------------------------------------------------------------------------+-----------+--------+----------+---------+---------------------+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multicorner Timing Analysis Summary                                                                                                            ;
++-----------------------------------------------------------------------------+-------------+--------+-----------+---------+---------------------+
+; Clock                                                                       ; Setup       ; Hold   ; Recovery  ; Removal ; Minimum Pulse Width ;
++-----------------------------------------------------------------------------+-------------+--------+-----------+---------+---------------------+
+; Worst-case Slack                                                            ; -11.025     ; -0.224 ; -8.317    ; 0.273   ; -2.225              ;
+;  CLOCK2_50                                                                  ; -4.399      ; 0.178  ; N/A       ; N/A     ; -0.721              ;
+;  CLOCK_50                                                                   ; N/A         ; N/A    ; N/A       ; N/A     ; 9.286               ;
+;  MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -4.633      ; 0.071  ; -1.952    ; 0.273   ; -0.394              ;
+;  MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -7.362      ; 0.060  ; -2.629    ; 0.422   ; -0.394              ;
+;  MIPI_PIXEL_CLK                                                             ; -11.025     ; -0.224 ; -8.317    ; 0.650   ; -2.225              ;
+;  MIPI_PIXEL_HS                                                              ; -0.208      ; 0.141  ; N/A       ; N/A     ; -0.613              ;
+;  RESET_DELAY:u2|oREADY                                                      ; -4.166      ; 0.429  ; N/A       ; N/A     ; 0.304               ;
+;  ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]     ; N/A         ; N/A    ; N/A       ; N/A     ; 1.666               ;
+; Design-wide TNS                                                             ; -338890.586 ; -1.171 ; -6326.605 ; 0.0     ; -48491.942          ;
+;  CLOCK2_50                                                                  ; -245.574    ; 0.000  ; N/A       ; N/A     ; -64.069             ;
+;  CLOCK_50                                                                   ; N/A         ; N/A    ; N/A       ; N/A     ; 0.000               ;
+;  MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; -871.846    ; 0.000  ; -147.856  ; 0.000   ; -159.274            ;
+;  MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; -1171.073   ; 0.000  ; -245.278  ; 0.000   ; -182.506            ;
+;  MIPI_PIXEL_CLK                                                             ; -336597.425 ; -1.171 ; -5933.471 ; 0.000   ; -48430.878          ;
+;  MIPI_PIXEL_HS                                                              ; -0.674      ; 0.000  ; N/A       ; N/A     ; -4.512              ;
+;  RESET_DELAY:u2|oREADY                                                      ; -4.166      ; 0.000  ; N/A       ; N/A     ; 0.000               ;
+;  ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0]     ; N/A         ; N/A    ; N/A       ; N/A     ; 0.000               ;
++-----------------------------------------------------------------------------+-------------+--------+-----------+---------+---------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -594,9 +594,6 @@ No synchronizer chains to report.
 ; KEY[1]          ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; KEY[2]          ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; KEY[3]          ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; SW[1]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; SW[2]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; SW[3]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; CAMERA_I2C_SCL  ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; CAMERA_I2C_SDA  ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_I2C_SCL    ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
@@ -604,17 +601,17 @@ No synchronizer chains to report.
 ; SW[0]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_CLK  ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; KEY[0]          ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; MIPI_PIXEL_HS   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; MIPI_PIXEL_VS   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; SW[7]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; SW[8]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[9]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; SW[4]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
-; SW[5]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[8]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[7]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; SW[6]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[5]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[4]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; CLOCK_50        ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; CLOCK2_50       ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; MIPI_PIXEL_HS   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_D[2] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; MIPI_PIXEL_VS   ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_D[3] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_D[4] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_D[5] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
@@ -622,6 +619,9 @@ No synchronizer chains to report.
 ; MIPI_PIXEL_D[7] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_D[8] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_D[9] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[3]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[2]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
+; SW[1]           ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_D[1] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 ; MIPI_PIXEL_D[0] ; 3.3-V LVTTL  ; 2640 ps         ; 2640 ps         ;
 +-----------------+--------------+-----------------+-----------------+
@@ -1024,17 +1024,17 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                                                 ; To Clock                                                                   ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +----------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
-; CLOCK2_50                                                                  ; CLOCK2_50                                                                  ; 4235     ; 0        ; 0        ; 0        ;
+; CLOCK2_50                                                                  ; CLOCK2_50                                                                  ; 4493     ; 0        ; 0        ; 0        ;
 ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; CLOCK2_50                                                                  ; 1        ; 1        ; 0        ; 0        ;
 ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; CLOCK2_50                                                                  ; 1        ; 1        ; 0        ; 0        ;
 ; RESET_DELAY:u2|oREADY                                                      ; CLOCK2_50                                                                  ; 1        ; 1        ; 0        ; 0        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 25292    ; 0        ; 0        ; 0        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 24867    ; 0        ; 0        ; 0        ;
 ; RESET_DELAY:u2|oREADY                                                      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 18       ; 18       ; 0        ; 0        ;
 ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 25       ; 0        ; 0        ; 0        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 180160   ; 0        ; 0        ; 0        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 92391    ; 0        ; 0        ; 0        ;
 ; RESET_DELAY:u2|oREADY                                                      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 25       ; 25       ; 0        ; 0        ;
-; MIPI_PIXEL_CLK                                                             ; MIPI_PIXEL_CLK                                                             ; 13712    ; 0        ; 0        ; 0        ;
-; MIPI_PIXEL_HS                                                              ; MIPI_PIXEL_CLK                                                             ; 543      ; 143      ; 0        ; 0        ;
+; MIPI_PIXEL_CLK                                                             ; MIPI_PIXEL_CLK                                                             ; 40381058 ; 0        ; 0        ; 0        ;
+; MIPI_PIXEL_HS                                                              ; MIPI_PIXEL_CLK                                                             ; 843      ; 143      ; 0        ; 0        ;
 ; RESET_DELAY:u2|oREADY                                                      ; MIPI_PIXEL_CLK                                                             ; 210      ; 104      ; 0        ; 0        ;
 ; MIPI_PIXEL_HS                                                              ; MIPI_PIXEL_HS                                                              ; 8        ; 0        ; 0        ; 0        ;
 ; MIPI_PIXEL_HS                                                              ; RESET_DELAY:u2|oREADY                                                      ; 1        ; 1        ; 0        ; 0        ;
@@ -1047,17 +1047,17 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +----------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                                                 ; To Clock                                                                   ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +----------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
-; CLOCK2_50                                                                  ; CLOCK2_50                                                                  ; 4235     ; 0        ; 0        ; 0        ;
+; CLOCK2_50                                                                  ; CLOCK2_50                                                                  ; 4493     ; 0        ; 0        ; 0        ;
 ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; CLOCK2_50                                                                  ; 1        ; 1        ; 0        ; 0        ;
 ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; CLOCK2_50                                                                  ; 1        ; 1        ; 0        ; 0        ;
 ; RESET_DELAY:u2|oREADY                                                      ; CLOCK2_50                                                                  ; 1        ; 1        ; 0        ; 0        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 25292    ; 0        ; 0        ; 0        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 24867    ; 0        ; 0        ; 0        ;
 ; RESET_DELAY:u2|oREADY                                                      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 18       ; 18       ; 0        ; 0        ;
 ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 25       ; 0        ; 0        ; 0        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 180160   ; 0        ; 0        ; 0        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 92391    ; 0        ; 0        ; 0        ;
 ; RESET_DELAY:u2|oREADY                                                      ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 25       ; 25       ; 0        ; 0        ;
-; MIPI_PIXEL_CLK                                                             ; MIPI_PIXEL_CLK                                                             ; 13712    ; 0        ; 0        ; 0        ;
-; MIPI_PIXEL_HS                                                              ; MIPI_PIXEL_CLK                                                             ; 543      ; 143      ; 0        ; 0        ;
+; MIPI_PIXEL_CLK                                                             ; MIPI_PIXEL_CLK                                                             ; 40381058 ; 0        ; 0        ; 0        ;
+; MIPI_PIXEL_HS                                                              ; MIPI_PIXEL_CLK                                                             ; 843      ; 143      ; 0        ; 0        ;
 ; RESET_DELAY:u2|oREADY                                                      ; MIPI_PIXEL_CLK                                                             ; 210      ; 104      ; 0        ; 0        ;
 ; MIPI_PIXEL_HS                                                              ; MIPI_PIXEL_HS                                                              ; 8        ; 0        ; 0        ; 0        ;
 ; MIPI_PIXEL_HS                                                              ; RESET_DELAY:u2|oREADY                                                      ; 1        ; 1        ; 0        ; 0        ;
@@ -1070,10 +1070,10 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +---------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                                                ; To Clock                                                                   ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +---------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
-; RESET_DELAY:u2|oREADY                                                     ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 83       ; 83       ; 0        ; 0        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 87       ; 0        ; 0        ; 0        ;
-; RESET_DELAY:u2|oREADY                                                     ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 87       ; 87       ; 0        ; 0        ;
-; RESET_DELAY:u2|oREADY                                                     ; MIPI_PIXEL_CLK                                                             ; 65       ; 65       ; 0        ; 0        ;
+; RESET_DELAY:u2|oREADY                                                     ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 82       ; 82       ; 0        ; 0        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 100      ; 0        ; 0        ; 0        ;
+; RESET_DELAY:u2|oREADY                                                     ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 100      ; 100      ; 0        ; 0        ;
+; RESET_DELAY:u2|oREADY                                                     ; MIPI_PIXEL_CLK                                                             ; 828      ; 828      ; 0        ; 0        ;
 +---------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1083,10 +1083,10 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +---------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                                                ; To Clock                                                                   ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +---------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
-; RESET_DELAY:u2|oREADY                                                     ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 83       ; 83       ; 0        ; 0        ;
-; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 87       ; 0        ; 0        ; 0        ;
-; RESET_DELAY:u2|oREADY                                                     ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 87       ; 87       ; 0        ; 0        ;
-; RESET_DELAY:u2|oREADY                                                     ; MIPI_PIXEL_CLK                                                             ; 65       ; 65       ; 0        ; 0        ;
+; RESET_DELAY:u2|oREADY                                                     ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ  ; 82       ; 82       ; 0        ; 0        ;
+; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 100      ; 0        ; 0        ; 0        ;
+; RESET_DELAY:u2|oREADY                                                     ; MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ ; 100      ; 100      ; 0        ; 0        ;
+; RESET_DELAY:u2|oREADY                                                     ; MIPI_PIXEL_CLK                                                             ; 828      ; 828      ; 0        ; 0        ;
 +---------------------------------------------------------------------------+----------------------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -1110,10 +1110,10 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 22    ; 22   ;
-; Unconstrained Input Port Paths  ; 353   ; 353  ;
+; Unconstrained Input Ports       ; 25    ; 25   ;
+; Unconstrained Input Port Paths  ; 384   ; 384  ;
 ; Unconstrained Output Ports      ; 35    ; 35   ;
-; Unconstrained Output Port Paths ; 159   ; 159  ;
+; Unconstrained Output Port Paths ; 128   ; 128  ;
 +---------------------------------+-------+------+
 
 
@@ -1155,6 +1155,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; MIPI_PIXEL_D[9] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; MIPI_PIXEL_VS   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[0]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[1]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[2]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[3]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[4]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[5]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[6]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1228,6 +1231,9 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; MIPI_PIXEL_D[9] ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; MIPI_PIXEL_VS   ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[0]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[1]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[2]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
+; SW[3]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[4]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[5]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; SW[6]           ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -1286,7 +1292,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Standard Edition
-    Info: Processing started: Tue Apr 07 05:59:23 2026
+    Info: Processing started: Tue Apr 07 19:34:58 2026
 Info: Command: quartus_sta EdgeDetector -c EdgeDetector
 Info: qsta_default_script.tcl version: #1
 Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
@@ -1317,45 +1323,45 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -9.982
+Info (332146): Worst-case setup slack is -10.985
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -9.982           -1544.616 MIPI_PIXEL_CLK 
-    Info (332119):    -7.203           -1215.095 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -4.794            -862.986 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -4.094            -225.764 CLOCK2_50 
-    Info (332119):    -4.012              -4.012 RESET_DELAY:u2|oREADY 
-    Info (332119):    -0.164              -0.608 MIPI_PIXEL_HS 
-Info (332146): Worst-case hold slack is -0.244
+    Info (332119):   -10.985         -336597.425 MIPI_PIXEL_CLK 
+    Info (332119):    -7.362           -1171.073 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -4.633            -871.846 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -4.399            -245.574 CLOCK2_50 
+    Info (332119):    -4.166              -4.166 RESET_DELAY:u2|oREADY 
+    Info (332119):    -0.165              -0.502 MIPI_PIXEL_HS 
+Info (332146): Worst-case hold slack is -0.224
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.244              -1.212 MIPI_PIXEL_CLK 
-    Info (332119):     0.289               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.369               0.000 CLOCK2_50 
-    Info (332119):     0.417               0.000 MIPI_PIXEL_HS 
-    Info (332119):     0.419               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.920               0.000 RESET_DELAY:u2|oREADY 
-Info (332146): Worst-case recovery slack is -7.089
+    Info (332119):    -0.224              -0.668 MIPI_PIXEL_CLK 
+    Info (332119):     0.241               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.267               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.273               0.000 MIPI_PIXEL_HS 
+    Info (332119):     0.370               0.000 CLOCK2_50 
+    Info (332119):     1.115               0.000 RESET_DELAY:u2|oREADY 
+Info (332146): Worst-case recovery slack is -8.317
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -7.089            -457.773 MIPI_PIXEL_CLK 
-    Info (332119):    -1.981            -160.798 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -1.945            -150.766 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-Info (332146): Worst-case removal slack is 0.700
+    Info (332119):    -8.317           -5933.471 MIPI_PIXEL_CLK 
+    Info (332119):    -2.629            -245.278 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -1.952            -147.856 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+Info (332146): Worst-case removal slack is 0.710
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.700               0.000 MIPI_PIXEL_CLK 
-    Info (332119):     0.803               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.898               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-Info (332146): Worst-case minimum pulse width slack is -2.174
+    Info (332119):     0.710               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.989               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     1.108               0.000 MIPI_PIXEL_CLK 
+Info (332146): Worst-case minimum pulse width slack is -2.225
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.174           -2332.812 MIPI_PIXEL_CLK 
-    Info (332119):    -0.639             -59.895 CLOCK2_50 
-    Info (332119):    -0.438            -186.099 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -0.394            -147.230 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -0.394              -3.042 MIPI_PIXEL_HS 
-    Info (332119):     0.095               0.000 RESET_DELAY:u2|oREADY 
+    Info (332119):    -2.225          -40939.253 MIPI_PIXEL_CLK 
+    Info (332119):    -0.637             -64.069 CLOCK2_50 
+    Info (332119):    -0.394            -182.506 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -0.394            -159.274 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -0.394              -3.122 MIPI_PIXEL_HS 
+    Info (332119):     0.338               0.000 RESET_DELAY:u2|oREADY 
     Info (332119):     1.666               0.000 ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0] 
     Info (332119):     9.670               0.000 CLOCK_50 
 Info: Analyzing Slow 1100mV 0C Model
@@ -1368,45 +1374,45 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -9.572
+Info (332146): Worst-case setup slack is -11.025
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -9.572           -1462.785 MIPI_PIXEL_CLK 
-    Info (332119):    -7.199           -1176.456 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -4.772            -831.271 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -3.979            -221.783 CLOCK2_50 
-    Info (332119):    -3.968              -3.968 RESET_DELAY:u2|oREADY 
-    Info (332119):    -0.208              -0.731 MIPI_PIXEL_HS 
-Info (332146): Worst-case hold slack is -0.244
+    Info (332119):   -11.025         -326553.164 MIPI_PIXEL_CLK 
+    Info (332119):    -7.300           -1133.222 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -4.575            -849.715 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -4.264            -240.158 CLOCK2_50 
+    Info (332119):    -4.135              -4.135 RESET_DELAY:u2|oREADY 
+    Info (332119):    -0.208              -0.674 MIPI_PIXEL_HS 
+Info (332146): Worst-case hold slack is -0.200
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.244              -1.615 MIPI_PIXEL_CLK 
-    Info (332119):     0.291               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.368               0.000 CLOCK2_50 
-    Info (332119):     0.389               0.000 MIPI_PIXEL_HS 
-    Info (332119):     0.436               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.880               0.000 RESET_DELAY:u2|oREADY 
-Info (332146): Worst-case recovery slack is -6.566
+    Info (332119):    -0.200              -0.680 MIPI_PIXEL_CLK 
+    Info (332119):     0.232               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.253               0.000 MIPI_PIXEL_HS 
+    Info (332119):     0.266               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.371               0.000 CLOCK2_50 
+    Info (332119):     1.092               0.000 RESET_DELAY:u2|oREADY 
+Info (332146): Worst-case recovery slack is -7.732
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -6.566            -423.737 MIPI_PIXEL_CLK 
-    Info (332119):    -1.889            -152.159 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -1.875            -145.060 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-Info (332146): Worst-case removal slack is 0.319
+    Info (332119):    -7.732           -5530.785 MIPI_PIXEL_CLK 
+    Info (332119):    -2.474            -230.687 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -1.887            -141.993 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+Info (332146): Worst-case removal slack is 0.650
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.319               0.000 MIPI_PIXEL_CLK 
-    Info (332119):     0.707               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.781               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-Info (332146): Worst-case minimum pulse width slack is -2.174
+    Info (332119):     0.650               0.000 MIPI_PIXEL_CLK 
+    Info (332119):     0.670               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.976               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+Info (332146): Worst-case minimum pulse width slack is -2.225
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.174           -2327.553 MIPI_PIXEL_CLK 
-    Info (332119):    -0.648             -54.723 CLOCK2_50 
-    Info (332119):    -0.394            -176.746 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -0.394            -140.969 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -0.394              -2.984 MIPI_PIXEL_HS 
-    Info (332119):     0.095               0.000 RESET_DELAY:u2|oREADY 
+    Info (332119):    -2.225          -40715.275 MIPI_PIXEL_CLK 
+    Info (332119):    -0.637             -58.588 CLOCK2_50 
+    Info (332119):    -0.394            -177.423 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -0.394            -155.193 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -0.394              -3.093 MIPI_PIXEL_HS 
+    Info (332119):     0.310               0.000 RESET_DELAY:u2|oREADY 
     Info (332119):     1.666               0.000 ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0] 
     Info (332119):     9.673               0.000 CLOCK_50 
 Info: Analyzing Fast 1100mV 85C Model
@@ -1419,45 +1425,45 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -5.794
+Info (332146): Worst-case setup slack is -6.447
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.794            -796.603 MIPI_PIXEL_CLK 
-    Info (332119):    -4.050            -673.391 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -2.673            -447.929 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -2.466             -95.640 CLOCK2_50 
-    Info (332119):    -2.279              -2.279 RESET_DELAY:u2|oREADY 
-    Info (332119):     0.330               0.000 MIPI_PIXEL_HS 
-Info (332146): Worst-case hold slack is -0.150
+    Info (332119):    -6.447         -197472.980 MIPI_PIXEL_CLK 
+    Info (332119):    -4.180            -642.394 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -2.601            -449.572 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -2.542            -107.563 CLOCK2_50 
+    Info (332119):    -2.401              -2.401 RESET_DELAY:u2|oREADY 
+    Info (332119):     0.306               0.000 MIPI_PIXEL_HS 
+Info (332146): Worst-case hold slack is -0.152
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.150              -0.854 MIPI_PIXEL_CLK 
-    Info (332119):     0.100               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.156               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.197               0.000 CLOCK2_50 
-    Info (332119):     0.215               0.000 MIPI_PIXEL_HS 
-    Info (332119):     0.276               0.000 RESET_DELAY:u2|oREADY 
-Info (332146): Worst-case recovery slack is -5.765
+    Info (332119):    -0.152              -0.496 MIPI_PIXEL_CLK 
+    Info (332119):     0.076               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.081               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.156               0.000 MIPI_PIXEL_HS 
+    Info (332119):     0.185               0.000 CLOCK2_50 
+    Info (332119):     0.429               0.000 RESET_DELAY:u2|oREADY 
+Info (332146): Worst-case recovery slack is -6.801
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.765            -373.111 MIPI_PIXEL_CLK 
-    Info (332119):    -1.287             -98.997 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -0.935             -75.461 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-Info (332146): Worst-case removal slack is 0.256
+    Info (332119):    -6.801           -4585.061 MIPI_PIXEL_CLK 
+    Info (332119):    -1.529            -138.342 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -1.312             -98.246 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+Info (332146): Worst-case removal slack is 0.355
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.256               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.422               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     1.321               0.000 MIPI_PIXEL_CLK 
+    Info (332119):     0.355               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.542               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     1.537               0.000 MIPI_PIXEL_CLK 
 Info (332146): Worst-case minimum pulse width slack is -2.174
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.174           -2551.778 MIPI_PIXEL_CLK 
-    Info (332119):    -0.685             -40.640 CLOCK2_50 
-    Info (332119):    -0.545              -3.754 MIPI_PIXEL_HS 
-    Info (332119):    -0.185             -14.032 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -0.097              -4.183 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.089               0.000 RESET_DELAY:u2|oREADY 
+    Info (332119):    -2.174          -43108.613 MIPI_PIXEL_CLK 
+    Info (332119):    -0.698             -43.791 CLOCK2_50 
+    Info (332119):    -0.579              -4.077 MIPI_PIXEL_HS 
+    Info (332119):    -0.108             -10.387 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -0.092              -9.550 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.304               0.000 RESET_DELAY:u2|oREADY 
     Info (332119):     1.666               0.000 ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0] 
     Info (332119):     9.336               0.000 CLOCK_50 
 Info: Analyzing Fast 1100mV 0C Model
@@ -1468,53 +1474,53 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -5.179
+Info (332146): Worst-case setup slack is -5.850
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.179            -673.121 MIPI_PIXEL_CLK 
-    Info (332119):    -3.615            -585.095 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -2.345              -2.345 RESET_DELAY:u2|oREADY 
-    Info (332119):    -2.307            -389.253 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -2.112             -81.396 CLOCK2_50 
-    Info (332119):     0.355               0.000 MIPI_PIXEL_HS 
-Info (332146): Worst-case hold slack is -0.169
+    Info (332119):    -5.850         -171360.349 MIPI_PIXEL_CLK 
+    Info (332119):    -3.712            -558.356 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -2.467              -2.467 RESET_DELAY:u2|oREADY 
+    Info (332119):    -2.253            -392.251 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -2.186             -91.319 CLOCK2_50 
+    Info (332119):     0.353               0.000 MIPI_PIXEL_HS 
+Info (332146): Worst-case hold slack is -0.179
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -0.169              -1.799 MIPI_PIXEL_CLK 
-    Info (332119):     0.085               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.141               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.188               0.000 CLOCK2_50 
-    Info (332119):     0.205               0.000 MIPI_PIXEL_HS 
-    Info (332119):     0.341               0.000 RESET_DELAY:u2|oREADY 
-Info (332146): Worst-case recovery slack is -4.726
+    Info (332119):    -0.179              -1.171 MIPI_PIXEL_CLK 
+    Info (332119):     0.060               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.071               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.141               0.000 MIPI_PIXEL_HS 
+    Info (332119):     0.178               0.000 CLOCK2_50 
+    Info (332119):     0.488               0.000 RESET_DELAY:u2|oREADY 
+Info (332146): Worst-case recovery slack is -5.568
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -4.726            -305.477 MIPI_PIXEL_CLK 
-    Info (332119):    -1.095             -84.016 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -0.797             -63.030 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-Info (332146): Worst-case removal slack is 0.168
+    Info (332119):    -5.568           -3787.965 MIPI_PIXEL_CLK 
+    Info (332119):    -1.284            -116.916 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -1.104             -82.335 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+Info (332146): Worst-case removal slack is 0.273
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.168               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.325               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.816               0.000 MIPI_PIXEL_CLK 
+    Info (332119):     0.273               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.422               0.000 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.932               0.000 MIPI_PIXEL_CLK 
 Info (332146): Worst-case minimum pulse width slack is -2.174
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.174           -2611.763 MIPI_PIXEL_CLK 
-    Info (332119):    -0.719             -48.519 CLOCK2_50 
-    Info (332119):    -0.588              -4.284 MIPI_PIXEL_HS 
-    Info (332119):    -0.096              -3.012 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):    -0.030              -0.385 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
-    Info (332119):     0.160               0.000 RESET_DELAY:u2|oREADY 
+    Info (332119):    -2.174          -48430.878 MIPI_PIXEL_CLK 
+    Info (332119):    -0.721             -52.051 CLOCK2_50 
+    Info (332119):    -0.613              -4.512 MIPI_PIXEL_HS 
+    Info (332119):    -0.047              -2.335 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_BRIDGE_CONFIG:mpiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):    -0.041              -2.166 MIPI_BRIDGE_CAMERA_Config:cfin|MIPI_CAMERA_CONFIG:camiv|CLOCKMEM:c1|CK_1HZ 
+    Info (332119):     0.318               0.000 RESET_DELAY:u2|oREADY 
     Info (332119):     1.666               0.000 ref|pll_test_inst|altera_pll_i|general[0].gpll~FRACTIONAL_PLL|vcoph[0] 
     Info (332119):     9.286               0.000 CLOCK_50 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 7 warnings
-    Info: Peak virtual memory: 5346 megabytes
-    Info: Processing ended: Tue Apr 07 05:59:31 2026
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:12
+    Info: Peak virtual memory: 6514 megabytes
+    Info: Processing ended: Tue Apr 07 19:35:57 2026
+    Info: Elapsed time: 00:00:59
+    Info: Total CPU time (on all processors): 00:03:44
 
 

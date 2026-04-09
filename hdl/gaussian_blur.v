@@ -2,8 +2,10 @@ module gaussian_blur (
     input        clk,      // 25 MHz pixel clock
     input        rst_n,    // Active-low reset
     input  [7:0] gray_in,  // Grayscale input from RGB-to-Gray
-    input        de,       // Data enable (active region)
-    output [7:0] gray_out  // Smoothed grayscale output
+    input        de_in,       // Data enable (active region)
+
+    output reg   de_out,
+    output reg [7:0] gray_out  // Smoothed grayscale output
 );
 
     // ---------------------------------------------------------------
@@ -12,7 +14,7 @@ module gaussian_blur (
     reg [9:0] h_cnt;
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n)    h_cnt <= 0;
-        else if (!de)  h_cnt <= 0;
+        else if (!de_in)  h_cnt <= 0;
         else           h_cnt <= h_cnt + 1;
     end
 
@@ -30,7 +32,7 @@ module gaussian_blur (
     wire [7:0] lb3_data = line_buf3[h_cnt];
 
     always @(posedge clk) begin
-        if (de) begin
+        if (de_in) begin
             line_buf0[h_cnt] <= gray_in;
             line_buf1[h_cnt] <= lb0_data;
             line_buf2[h_cnt] <= lb1_data;
@@ -54,12 +56,30 @@ module gaussian_blur (
             {g20, g21, g22, g23, g24} <= 40'd0;
             {g30, g31, g32, g33, g34} <= 40'd0;
             {g40, g41, g42, g43, g44} <= 40'd0;
-        end else if (de) begin
+        end else if (de_in) begin
             g04 <= g03; g03 <= g02; g02 <= g01; g01 <= g00; g00 <= gray_in;
             g14 <= g13; g13 <= g12; g12 <= g11; g11 <= g10; g10 <= lb0_data;
             g24 <= g23; g23 <= g22; g22 <= g21; g21 <= g20; g20 <= lb1_data;
             g34 <= g33; g33 <= g32; g32 <= g31; g31 <= g30; g30 <= lb2_data;
             g44 <= g43; g43 <= g42; g42 <= g41; g41 <= g40; g40 <= lb3_data;
+        end
+    end
+
+    // ---------------------------------------------------------------
+    // 4. Data Enable (DE) Synchronization Pipeline
+    // ---------------------------------------------------------------
+    // The center pixel (g22) is delayed by 2 clocks inside the shift 
+    // register. We must delay de_in by 2 clocks to match it exactly.
+    reg de_shift1, de_shift2;
+    
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            de_shift1 <= 1'b0;
+            de_shift2 <= 1'b0;
+        end else begin
+            // Unconditional shift so DE turns off during blanking
+            de_shift1 <= de_in;
+            de_shift2 <= de_shift1; 
         end
     end
 
@@ -88,9 +108,18 @@ module gaussian_blur (
     wire [15:0] total_sum = row0 + row1 + row2 + row3 + row4;
 
     // ---------------------------------------------------------------
-    // 5. Output Normalization
-    // Divide by 256 by taking the top 8 bits
+    // 6. Output Registers (Adds 1 final clock cycle of latency)
     // ---------------------------------------------------------------
-    assign gray_out = de ? total_sum[15:8] : 8'd0;
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            gray_out <= 8'd0;
+            de_out   <= 1'b0;
+        end else begin
+            gray_out <= total_sum[15:8];
+            
+            // Pass the perfectly synced DE out to the next module
+            de_out   <= de_shift2; 
+        end
+    end
 
 endmodule

@@ -179,57 +179,54 @@ assign VGA_SYNC_N = 1'b0;
 assign READ_Request = ((H_Cont > 16'd160 && H_Cont < 16'd800) &&
                        (V_Cont > 16'd045 && V_Cont < 16'd525));
 
-// Blanking signal (active low)
-assign VGA_BLANK_N = ~((H_Cont < 16'd160) || (V_Cont < 16'd045));
-
 // Pixel data gated by blanking
 assign VGA_R_A = VGA_BLANK_N ? sCCD_R : 8'h00;
 assign VGA_G_A = VGA_BLANK_N ? sCCD_G : 8'h00;
 assign VGA_B_A = VGA_BLANK_N ? sCCD_B : 8'h00;
 
-// Generate horizontal and vertical sync signals
-reg VGA_HS_raw, VGA_VS_raw;
+// ===============================================================
+// 1. Raw Sync & Blanking Generation
+// ===============================================================
+wire raw_VGA_HS;
+wire raw_VGA_VS;
+wire raw_VGA_BLANK_N;
 
-always @(*) begin
-   if ((H_Cont >= 16'd002) && (H_Cont <= 16'd097))
-      VGA_HS = 1'b0;
-   else
-      VGA_HS = 1'b1;
+// Your original sync logic, now assigned to "raw" internal wires
+assign raw_VGA_HS = ~((H_Cont >= 16'd002) && (H_Cont <= 16'd097));
+assign raw_VGA_VS = ~((V_Cont >= 16'd013) && (V_Cont <= 16'd014));
+assign raw_VGA_BLANK_N = ~((H_Cont < 16'd160) || (V_Cont < 16'd045));
 
-   if ((V_Cont >= 16'd013) && (V_Cont <= 16'd014))
-      VGA_VS = 1'b0;
-   else
-      VGA_VS = 1'b1;
-end
+// ===============================================================
+// 2. The Parameterized Pipeline Delay
+// ===============================================================
+// Total Clocks = Blur1(3) + Blur2(3) + Sobel(2) + NMS(2) + Hyster(2) = 12
+localparam LATENCY = 12; 
 
-/*
-// ---------------------------------------------------------------
-// The 6-Clock Pipeline Delay Register
-// ---------------------------------------------------------------
-reg [5:0] hs_shift;
-reg [5:0] vs_shift;
-reg [5:0] de_shift;
+reg [LATENCY-1:0] hs_shift;
+reg [LATENCY-1:0] vs_shift;
+reg [LATENCY-1:0] blank_shift;
 
 always @(posedge MIPI_PIXEL_CLK_ or negedge RESET_N) begin
     if (!RESET_N) begin
-        hs_shift <= 6'b111111; // Syncs default to HIGH
-        vs_shift <= 6'b111111;
-        de_shift <= 6'b000000; // DE defaults to LOW
+        hs_shift    <= {LATENCY{1'b1}}; // Syncs default HIGH
+        vs_shift    <= {LATENCY{1'b1}};
+        blank_shift <= {LATENCY{1'b0}}; // Blanking defaults LOW
     end else begin
-        hs_shift <= {hs_shift[4:0], VGA_HS_raw};
-        vs_shift <= {vs_shift[4:0], VGA_VS_raw};
-        de_shift <= {de_shift[4:0], READ_Request};
+        hs_shift    <= {hs_shift[LATENCY-2:0], raw_VGA_HS};
+        vs_shift    <= {vs_shift[LATENCY-2:0], raw_VGA_VS};
+        blank_shift <= {blank_shift[LATENCY-2:0], raw_VGA_BLANK_N};
     end
 end
 
-// ---------------------------------------------------------------
-// Assign Delayed Signals to VGA Outputs
-// ---------------------------------------------------------------
+// ===============================================================
+// 3. Assign Delayed Signals to Physical Outputs
+// ===============================================================
 always @(*) begin
-    VGA_HS = hs_shift[5];
-    VGA_VS = vs_shift[5];
+    VGA_HS = hs_shift[LATENCY-1];
+    VGA_VS = vs_shift[LATENCY-1];
 end
-*/
+
+assign VGA_BLANK_N = blank_shift[LATENCY-1];
 
 /*
 //------AOTO FOCUS ENABLE  --
@@ -291,9 +288,15 @@ canny_core canny_inst (
     .canny_edge ( VGA_edge ) // Output edge map on Red channel for visualization
 );
 
-assign VGA_R = (SW[0]) ? VGA_edge : sCCD_R;
-assign VGA_G = (SW[0]) ? VGA_edge : sCCD_G;
-assign VGA_B = (SW[0]) ? VGA_edge : sCCD_B;
+// Choose between Canny Edge or Raw Camera based on SW[0]
+wire [7:0] final_R = SW[0] ? VGA_edge : sCCD_R;
+wire [7:0] final_G = SW[0] ? VGA_edge : sCCD_G;
+wire [7:0] final_B = SW[0] ? VGA_edge : sCCD_B;
+
+// MASK WITH BLANKING: Crucial so the monitor doesn't draw garbage off-screen
+assign VGA_R = VGA_BLANK_N ? final_R : 8'h00;
+assign VGA_G = VGA_BLANK_N ? final_G : 8'h00;
+assign VGA_B = VGA_BLANK_N ? final_B : 8'h00;
 
 //----7-SEG OFF----
 assign  HEX2 = 7'h7F;

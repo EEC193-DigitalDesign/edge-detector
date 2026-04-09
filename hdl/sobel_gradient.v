@@ -9,9 +9,9 @@ module sobel_gradient (
     input  wire       de_in,
     input  wire [7:0] threshold,
     
-    output wire        de_out,   // Aligned Data Enable
-    output wire  [7:0] mag_out,  // 8-bit Gradient Magnitude
-    output wire  [1:0] dir_out   // 2-bit Direction (00=0°, 01=45°, 10=90°, 11=135°)
+    output reg        de_out,   // Aligned Data Enable
+    output reg  [7:0] mag_out,  // 8-bit Gradient Magnitude
+    output reg  [1:0] dir_out   // 2-bit Direction (00=0°, 01=45°, 10=90°, 11=135°)
 );
 
     // ---------------------------------------------------------------
@@ -40,15 +40,21 @@ module sobel_gradient (
     reg [7:0] sr1_0, sr1_1, sr1_2;
     reg [7:0] sr2_0, sr2_1, sr2_2;
 
+    reg de_shift;
+
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
+            de_shift <= 0;
             {sr0_0, sr0_1, sr0_2} <= 24'd0;
             {sr1_0, sr1_1, sr1_2} <= 24'd0;
             {sr2_0, sr2_1, sr2_2} <= 24'd0;
-        end else if (de_in) begin
-            sr0_2 <= sr0_1; sr0_1 <= sr0_0; sr0_0 <= gray_in;
-            sr1_2 <= sr1_1; sr1_1 <= sr1_0; sr1_0 <= lb0_data;
-            sr2_2 <= sr2_1; sr2_1 <= sr2_0; sr2_0 <= lb1_data;
+        end else begin
+            de_shift <= de_in;
+            if (de_in) begin
+                sr0_2 <= sr0_1; sr0_1 <= sr0_0; sr0_0 <= gray_in;
+                sr1_2 <= sr1_1; sr1_1 <= sr1_0; sr1_0 <= lb0_data;
+                sr2_2 <= sr2_1; sr2_1 <= sr2_0; sr2_0 <= lb1_data;
+            end
         end
     end
 
@@ -78,7 +84,17 @@ module sobel_gradient (
     end
 
     wire [7:0] clamped_mag = (magnitude > 11'd255) ? 8'd255 : magnitude[7:0];
-    assign mag_out = (clamped_mag < threshold) ? 8'd0 : clamped_mag;
-    assign dir_out = dir_comb;
-    assign de_out = de_in;
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            mag_out <= 8'd0;
+            dir_out <= 2'b00;
+            de_out  <= 1'b0;
+        end
+        else begin
+            mag_out = (clamped_mag < threshold) ? 8'd0 : clamped_mag;
+            dir_out = dir_comb;
+            de_out  <= de_shift; 
+        end
+    end
 endmodule
