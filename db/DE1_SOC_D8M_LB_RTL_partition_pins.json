@@ -64,7 +64,103 @@
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[1]",
+					"name" : "VGA_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "VGA_VS",
+					"strict" : false
+				},
+				{
+					"name" : "HEX2[6]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX3[0]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX3[1]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX3[2]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX3[3]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX3[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX3[5]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX3[6]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[0]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[1]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[2]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[3]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[5]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX4[6]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX5[1]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX5[2]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX5[3]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX5[4]",
+					"strict" : false
+				},
+				{
+					"name" : "HEX5[6]",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[2]",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[3]",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[6]",
 					"strict" : false
 				},
 				{
@@ -113,10 +209,6 @@
 				},
 				{
 					"name" : "VGA_B[7]",
-					"strict" : false
-				},
-				{
-					"name" : "VGA_CLK",
 					"strict" : false
 				},
 				{
@@ -188,10 +280,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "VGA_VS",
-					"strict" : false
-				},
-				{
 					"name" : "CAMERA_PWDN_n",
 					"strict" : false
 				},
@@ -200,11 +288,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "CAMERA_I2C_SCL",
+					"name" : "LEDR[5]",
 					"strict" : false
 				},
 				{
-					"name" : "CAMERA_I2C_SDA",
+					"name" : "AUD_DACDAT",
+					"strict" : false
+				},
+				{
+					"name" : "FPGA_I2C_SCLK",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[1]",
 					"strict" : false
 				},
 				{
@@ -216,11 +312,31 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[0]",
+					"name" : "CAMERA_I2C_SDA",
+					"strict" : false
+				},
+				{
+					"name" : "AUD_BCLK",
+					"strict" : false
+				},
+				{
+					"name" : "AUD_DACLRCK",
+					"strict" : false
+				},
+				{
+					"name" : "FPGA_I2C_SDAT",
+					"strict" : false
+				},
+				{
+					"name" : "CAMERA_I2C_SCL",
 					"strict" : false
 				},
 				{
 					"name" : "MIPI_PIXEL_CLK",
+					"strict" : false
+				},
+				{
+					"name" : "SW[0]",
 					"strict" : false
 				},
 				{
@@ -232,6 +348,18 @@
 					"strict" : false
 				},
 				{
+					"name" : "KEY[2]",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[1]",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK_50",
+					"strict" : false
+				},
+				{
 					"name" : "MIPI_PIXEL_HS",
 					"strict" : false
 				},
@@ -240,7 +368,35 @@
 					"strict" : false
 				},
 				{
+					"name" : "SW[1]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[8]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[7]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[6]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[5]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[9]",
+					"strict" : false
+				},
+				{
 					"name" : "SW[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[4]",
 					"strict" : false
 				},
 				{
@@ -281,6 +437,10 @@
 				},
 				{
 					"name" : "KEY[3]",
+					"strict" : false
+				},
+				{
+					"name" : "SW[2]",
 					"strict" : false
 				},
 				{

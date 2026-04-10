@@ -561,7 +561,7 @@ GND                          : G3        : gnd    :                   :         
 GND                          : G4        : gnd    :                   :         :           :                
 nCE                          : G5        :        :                   :         : 9A        :                
 MSEL2                        : G6        :        :                   :         : 9A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : G7        :        :                   :         : 8A        :                
+AUD_XCK                      : G7        : output : 3.3-V LVTTL       :         : 8A        : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : G8        :        :                   :         : 8A        :                
 VCCIO8A                      : G9        : power  :                   : 3.3V    : 8A        :                
 VGA_G[3]                     : G10       : output : 3.3-V LVTTL       :         : 8A        : Y              
@@ -591,8 +591,8 @@ DNU                          : H3        :        :                   :         
 DNU                          : H4        :        :                   :         :           :                
 GND                          : H5        : gnd    :                   :         :           :                
 VCCIO8A                      : H6        : power  :                   : 3.3V    : 8A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H7        :        :                   :         : 8A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : H8        :        :                   :         : 8A        :                
+AUD_BCLK                     : H7        : bidir  : 3.3-V LVTTL       :         : 8A        : Y              
+AUD_DACLRCK                  : H8        : bidir  : 3.3-V LVTTL       :         : 8A        : Y              
 VCCBAT                       : H9        : power  :                   : 1.2V    :           :                
 VCC_AUX                      : H10       : power  :                   : 2.5V    :           :                
 GND                          : H11       : gnd    :                   :         :           :                
@@ -621,12 +621,12 @@ GND                          : J3        : gnd    :                   :         
 GND                          : J4        : gnd    :                   :         :           :                
 nCONFIG                      : J5        :        :                   :         : 9A        :                
 GND                          : J6        :        :                   :         : 9A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : J7        :        :                   :         : 8A        :                
+AUD_DACDAT                   : J7        : output : 3.3-V LVTTL       :         : 8A        : Y              
 GND                          : J8        : gnd    :                   :         :           :                
 VGA_G[0]                     : J9        : output : 3.3-V LVTTL       :         : 8A        : Y              
 VGA_G[1]                     : J10       : output : 3.3-V LVTTL       :         : 8A        : Y              
 VCCPGM                       : J11       : power  :                   : 1.8V/2.5V/3.0V/3.3V :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : J12       :        :                   :         : 8A        :                
+FPGA_I2C_SCLK                : J12       : output : 3.3-V LVTTL       :         : 8A        : Y              
 VCCIO8A                      : J13       : power  :                   : 3.3V    : 8A        :                
 VGA_B[7]                     : J14       : output : 3.3-V LVTTL       :         : 8A        : Y              
 DNU                          : J15       :        :                   :         :           :                
@@ -651,12 +651,12 @@ DNU                          : K3        :        :                   :         
 DNU                          : K4        :        :                   :         :           :                
 GND                          : K5        : gnd    :                   :         :           :                
 MSEL1                        : K6        :        :                   :         : 9A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : K7        :        :                   :         : 8A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : K8        :        :                   :         : 8A        :                
+AUD_ADCDAT                   : K7        : input  : 3.3-V LVTTL       :         : 8A        : Y              
+AUD_ADCLRCK                  : K8        : bidir  : 3.3-V LVTTL       :         : 8A        : Y              
 VCCA_FPLL                    : K9        : power  :                   : 2.5V    :           :                
 GND                          : K10       : gnd    :                   :         :           :                
 VCCPD8A                      : K11       : power  :                   : 3.3V    : 8A        :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : K12       :        :                   :         : 8A        :                
+FPGA_I2C_SDAT                : K12       : bidir  : 3.3-V LVTTL       :         : 8A        : Y              
 VCCPD8A                      : K13       : power  :                   : 3.3V    : 8A        :                
 CLOCK4_50                    : K14       : input  : 3.3-V LVTTL       :         : 8A        : Y              
 GND                          : K15       : gnd    :                   :         :           :                

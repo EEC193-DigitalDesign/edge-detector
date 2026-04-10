@@ -108,6 +108,12 @@ set_clock_groups -asynchronous -group [get_clocks {u0|pll_sys|altera_pll_i|gener
 set_false_path -from [get_ports {KEY* SW*}] -to *
 set_false_path -from * -to [get_ports {LED* HEX*}]
 
+# Audio I2C and codec control are slow, relax timing
+set_false_path -from * -to [get_ports {FPGA_I2C_SCLK FPGA_I2C_SDAT}]
+set_false_path -from [get_ports {FPGA_I2C_SDAT}] -to *
+set_false_path -from * -to [get_ports {AUD_DACDAT AUD_BCLK AUD_DACLRCK AUD_XCK}]
+set_false_path -from [get_ports {AUD_ADCDAT AUD_ADCLRCK AUD_BCLK AUD_DACLRCK}] -to *
+
 
 #**************************************************************
 # Set Multicycle Path
