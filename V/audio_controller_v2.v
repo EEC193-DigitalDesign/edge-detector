@@ -12,6 +12,7 @@ module audio_controller_v2 (
     // detection results (pixel-clock domain)
     input        object_detected,
     input  [1:0] quadrant,
+    input  [7:0] proximity,        // 0=far/silent, 255=near/loud (pixel-clk domain)
 
     // WM8731 audio codec pins
     output       aud_xck,          // MCLK ~12.288 MHz
@@ -89,22 +90,26 @@ module audio_controller_v2 (
     reg [1:0] q_s1, q_s2;
     reg       d_s1, d_s2;
     reg       mode_s1, mode_s2;
+    reg [7:0] prox_s1, prox_s2;
 
     always @(posedge aud_mclk or negedge rst_n) begin
         if (!rst_n) begin
             q_s1 <= 2'd0;  q_s2 <= 2'd0;
             d_s1 <= 1'b0;  d_s2 <= 1'b0;
             mode_s1 <= 1'b0; mode_s2 <= 1'b0;
+            prox_s1 <= 8'd0; prox_s2 <= 8'd0;
         end else begin
             q_s1 <= quadrant;         q_s2 <= q_s1;
             d_s1 <= object_detected;  d_s2 <= d_s1;
             mode_s1 <= audio_mode;    mode_s2 <= mode_s1;
+            prox_s1 <= proximity;     prox_s2 <= prox_s1;
         end
     end
 
     wire        det_sync  = d_s2;
     wire [1:0]  quad_sync = q_s2;
     wire        mode_sync = mode_s2;
+    wire [7:0]  prox_sync = prox_s2;
 
     // ============================================================
     // Mode 2: Musical Note Generator
@@ -117,6 +122,7 @@ module audio_controller_v2 (
         .sample_tick (sample_tick),
         .enable      (det_sync),
         .quadrant    (quad_sync),
+        .proximity   (prox_sync),
         .audio_out   (note_audio)
     );
 

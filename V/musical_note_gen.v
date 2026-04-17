@@ -1,6 +1,7 @@
 //=======================================================
 //  musical_note_gen.v
 //  Additive synthesis (3 harmonics) + ADSR envelope
+//  + Proximity-based volume control
 //  Drop-in replacement for tone_generator.v
 //  Quadrant -> G4/C4/E4/A4 musical notes
 //=======================================================
@@ -10,6 +11,7 @@ module musical_note_gen (
     input              sample_tick,  // ~48 kHz
     input              enable,       // object_detected (CDC'd)
     input      [1:0]   quadrant,     // (CDC'd)
+    input      [7:0]   proximity,    // 0=far/silent, 255=near/loud (CDC'd)
     output reg [15:0]  audio_out     // 16-bit signed
 );
 
@@ -137,6 +139,12 @@ module musical_note_gen (
     wire signed [31:0] env_product = raw_sample * $signed({1'b0, envelope});
     wire signed [15:0] env_scaled = env_product[30:15];
 
+    // ---- Distance-based volume scaling ----
+    // final = (env_scaled * proximity) >>> 8
+    // proximity=255 -> full volume, proximity=0 -> silent
+    wire signed [23:0] vol_product = env_scaled * $signed({1'b0, proximity});
+    wire signed [15:0] vol_scaled  = vol_product[23:8];
+
     // ---- Main FSM ----
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -169,7 +177,7 @@ module musical_note_gen (
                 end
 
                 ST_ATTACK: begin
-                    audio_out <= env_scaled;
+                    audio_out <= vol_scaled;
                     phase_acc <= phase_acc + active_tuning_word;
 
                     if (!enable) begin
@@ -185,7 +193,7 @@ module musical_note_gen (
                 end
 
                 ST_DECAY: begin
-                    audio_out <= env_scaled;
+                    audio_out <= vol_scaled;
                     phase_acc <= phase_acc + active_tuning_word;
 
                     if (!enable) begin
@@ -201,7 +209,7 @@ module musical_note_gen (
                 end
 
                 ST_SUSTAIN: begin
-                    audio_out <= env_scaled;
+                    audio_out <= vol_scaled;
                     phase_acc <= phase_acc + active_tuning_word;
 
                     if (!enable) begin
@@ -213,7 +221,7 @@ module musical_note_gen (
                 end
 
                 ST_RELEASE: begin
-                    audio_out <= env_scaled;
+                    audio_out <= vol_scaled;
                     phase_acc <= phase_acc + active_tuning_word;
 
                     if (envelope <= RELEASE_RATE) begin

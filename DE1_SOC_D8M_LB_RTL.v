@@ -360,6 +360,28 @@ edge_detect_tracker #(
 );
 
 //=======================================================
+//  Proximity from active quadrant's edge count
+//=======================================================
+// Pick winning quadrant's count, normalize to 8-bit proximity value.
+// proximity = 255 means close (loud), 0 means far (silent).
+// The >>4 shift maps counts of ~0-4080 to 0-255.
+// Tune the shift amount based on your actual edge counts:
+//   - If close objects give counts ~2000-4000, >>4 works well.
+//   - If counts are higher (e.g. ~8000-16000), try >>6.
+//   - Use dbg_max on LEDs [4:0] to see your range.
+reg [19:0] active_count;
+always @(*) begin
+    case (obj_quadrant)
+        2'b00:   active_count = cnt_tl;
+        2'b01:   active_count = cnt_tr;
+        2'b10:   active_count = cnt_bl;
+        2'b11:   active_count = cnt_br;
+    endcase
+end
+
+wire [7:0] proximity = (active_count > 20'd4080) ? 8'd255 : active_count[11:4];
+
+//=======================================================
 //  Audio controller v2 (dual mode: line-in FX / musical notes)
 //=======================================================
 audio_controller_v2 u_audio (
@@ -368,6 +390,7 @@ audio_controller_v2 u_audio (
     .audio_mode      ( audio_mode ),
     .object_detected ( obj_detected ),
     .quadrant        ( obj_quadrant ),
+    .proximity       ( proximity ),
     .aud_xck         ( AUD_XCK ),
     .aud_bclk        ( AUD_BCLK ),
     .aud_daclrck     ( AUD_DACLRCK ),
