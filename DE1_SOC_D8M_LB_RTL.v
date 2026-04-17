@@ -1,6 +1,6 @@
 //=======================================================
-//  DE10-SoC / D8M upgraded edge detector top-level
-//  Drop-in replacement for your existing top file
+//  DE1-SoC / D8M  edge detector + checkerboard object
+//  detection + audio quadrant feedback
 //=======================================================
 
 module DE1_SOC_D8M_LB_RTL(
@@ -37,6 +37,18 @@ module DE1_SOC_D8M_LB_RTL(
 	output		     [7:0]		VGA_R,
 	output		          		VGA_SYNC_N,
 	output	reg	          		VGA_VS,
+
+	//////////// Audio //////////
+	input 		          		AUD_ADCDAT,
+	inout 		          		AUD_ADCLRCK,
+	inout 		          		AUD_BCLK,
+	output		          		AUD_DACDAT,
+	inout 		          		AUD_DACLRCK,
+	output		          		AUD_XCK,
+
+	//////////// FPGA I2C (WM8731) //////////
+	output		          		FPGA_I2C_SCLK,
+	inout 		          		FPGA_I2C_SDAT,
 
 	//////////// GPIO_1, GPIO_1 connect to D8M-GPIO //////////
 	inout 		          		CAMERA_I2C_SCL,
@@ -94,23 +106,83 @@ wire [7:0] edge_g;
 wire [7:0] edge_b;
 wire       edge_valid;
 
+// ---------- detection ----------
+wire        obj_detected;
+wire [1:0]  obj_quadrant;
+wire [19:0] cnt_tl, cnt_tr, cnt_bl, cnt_br;
+wire        audio_cfg_done;
+
+// ---------- audio mode toggle (KEY[3]) ----------
+reg         audio_mode;      // 0=line-in FX, 1=musical notes
+reg         key3_d;
+reg [19:0]  key3_lockout;
+
 // -------- switch map --------
 // SW[0] = 1 enable edge path, 0 show normal camera
 // SW[1] = 1 overlay edges on original image, 0 show edge-only
 // SW[2] = 1 enable Gaussian blur, 0 bypass blur
-// SW[3] = autofocus assist mode (preserved from your original top)
+// SW[3] = autofocus assist mode
 // SW[4] = 1 use focus-adjusted video as edge input, 0 use raw camera RGB
-// SW[5] = threshold bit 0
-// SW[6] = threshold bit 1
-// SW[7] = threshold bit 2
-// SW[8] = threshold bit 3
+// SW[5:8] = edge threshold (4-bit -> 0,16,32,...,240)
 // SW[9] = 1 edge polarity white-on-black, 0 black-on-white
 wire [7:0] edge_threshold;
-assign edge_threshold = {4'b0000, SW[8:5]} << 4;   // 0,16,32,...,240
+assign edge_threshold = {4'b0000, SW[8:5]} << 4;
 
 wire [7:0] edge_src_r = SW[4] ? VGA_R_unfilt : VGA_R_A;
 wire [7:0] edge_src_g = SW[4] ? VGA_G_unfilt : VGA_G_A;
 wire [7:0] edge_src_b = SW[4] ? VGA_B_unfilt : VGA_B_A;
+
+// ---- detection threshold (KEY[1] = down, KEY[2] = up) ----
+// Proper debounce: 20ms lockout after any press (~1M cycles at 50 MHz)
+reg [7:0]  detect_thresh;
+reg        key1_d, key2_d;
+reg [19:0] key_lockout;
+
+always @(posedge CLOCK_50 or negedge RESET_N) begin
+	if (!RESET_N) begin
+		detect_thresh <= 8'd30;
+		key1_d <= 1'b1;
+		key2_d <= 1'b1;
+		key_lockout <= 20'd0;
+	end else begin
+		key1_d <= KEY[1];
+		key2_d <= KEY[2];
+		if (key_lockout > 20'd0) begin
+			key_lockout <= key_lockout - 20'd1;
+		end else begin
+			// KEY active-low: falling edge = press
+			if (~KEY[1] & key1_d) begin
+				if (detect_thresh > 8'd8)
+					detect_thresh <= detect_thresh - 8'd8;
+				key_lockout <= 20'hFFFFF;
+			end
+			if (~KEY[2] & key2_d) begin
+				if (detect_thresh < 8'd248)
+					detect_thresh <= detect_thresh + 8'd8;
+				key_lockout <= 20'hFFFFF;
+			end
+		end
+	end
+end
+
+// ---- KEY[3] audio mode toggle with 20ms debounce ----
+always @(posedge CLOCK_50 or negedge RESET_N) begin
+	if (!RESET_N) begin
+		audio_mode   <= 1'b0;
+		key3_d       <= 1'b1;
+		key3_lockout <= 20'd0;
+	end else begin
+		key3_d <= KEY[3];
+		if (key3_lockout > 20'd0) begin
+			key3_lockout <= key3_lockout - 20'd1;
+		end else begin
+			if (~KEY[3] & key3_d) begin
+				audio_mode   <= ~audio_mode;
+				key3_lockout <= 20'hFFFFF;
+			end
+		end
+	end
+end
 
 //=======================================================
 // Structural coding
@@ -222,7 +294,7 @@ FOCUS_ADJ adl(
      .CLK_50        ( CLOCK2_50 ),
      .RESET_N       ( I2C_RELEASE ),
      .RESET_SUB_N   ( I2C_RELEASE ),
-     .AUTO_FOC      ( KEY[3] & AUTO_FOC ),
+     .AUTO_FOC      ( AUTO_FOC ),
      .SW_FUC_LINE   ( SW[3] ),
      .SW_FUC_ALL_CEN( SW[3] ),
      .VIDEO_HS      ( VGA_HS ),
@@ -261,12 +333,107 @@ edge_enhancer #(
     .edge_valid    ( edge_valid )
 );
 
-// Output select
-assign VGA_R = VGA_BLANK_N ? (SW[0] ? edge_r : VGA_R_unfilt) : 8'h00;
-assign VGA_G = VGA_BLANK_N ? (SW[0] ? edge_g : VGA_G_unfilt) : 8'h00;
-assign VGA_B = VGA_BLANK_N ? (SW[0] ? edge_b : VGA_B_unfilt) : 8'h00;
+//=======================================================
+//  Object detection  (checkerboard -> edge-density)
+//=======================================================
+edge_detect_tracker #(
+    .H_CENTER(16'd481),
+    .V_CENTER(16'd286)
+) u_detect (
+    .clk           ( MIPI_PIXEL_CLK_ ),
+    .rst_n         ( RESET_N ),
+    .de            ( READ_Request ),
+    .r_in          ( edge_src_r ),
+    .g_in          ( edge_src_g ),
+    .b_in          ( edge_src_b ),
+    .h_count       ( H_Cont ),
+    .v_count       ( V_Cont ),
+    .vs            ( VGA_VS ),
+    .detect_thresh ( detect_thresh ),
+    .min_count     ( 16'd200 ),
+    .object_detected( obj_detected ),
+    .quadrant      ( obj_quadrant ),
+    .count_tl      ( cnt_tl ),
+    .count_tr      ( cnt_tr ),
+    .count_bl      ( cnt_bl ),
+    .count_br      ( cnt_br )
+);
 
-//--Frame Counter --
+//=======================================================
+//  Audio controller v2 (dual mode: line-in FX / musical notes)
+//=======================================================
+audio_controller_v2 u_audio (
+    .clk_50          ( CLOCK_50 ),
+    .rst_n           ( RESET_N ),
+    .audio_mode      ( audio_mode ),
+    .object_detected ( obj_detected ),
+    .quadrant        ( obj_quadrant ),
+    .aud_xck         ( AUD_XCK ),
+    .aud_bclk        ( AUD_BCLK ),
+    .aud_daclrck     ( AUD_DACLRCK ),
+    .aud_dacdat      ( AUD_DACDAT ),
+    .aud_adclrck     ( AUD_ADCLRCK ),
+    .aud_adcdat      ( AUD_ADCDAT ),
+    .i2c_sclk        ( FPGA_I2C_SCLK ),
+    .i2c_sdat        ( FPGA_I2C_SDAT ),
+    .audio_config_done( audio_cfg_done )
+);
+
+//=======================================================
+//  VGA output with crosshair overlay
+//=======================================================
+
+// crosshair lines at screen center (1 px green lines)
+wire is_h_center = (H_Cont >= 16'd480 && H_Cont <= 16'd482);
+wire is_v_center = (V_Cont >= 16'd285 && V_Cont <= 16'd287);
+wire is_crosshair = VGA_BLANK_N & (is_h_center | is_v_center);
+
+// detected-quadrant highlight: thin green border (2 px) around active quadrant
+wire in_left  = (H_Cont < 16'd481);
+wire in_top   = (V_Cont < 16'd286);
+wire in_quad_tl = in_top  &  in_left;
+wire in_quad_tr = in_top  & ~in_left;
+wire in_quad_bl = ~in_top &  in_left;
+wire in_quad_br = ~in_top & ~in_left;
+
+wire in_active_quad = (obj_quadrant == 2'b00 && in_quad_tl) |
+                      (obj_quadrant == 2'b01 && in_quad_tr) |
+                      (obj_quadrant == 2'b10 && in_quad_bl) |
+                      (obj_quadrant == 2'b11 && in_quad_br);
+
+// edge of active quadrant (2 px border)
+wire near_h_edge = (H_Cont <= 16'd163) | (H_Cont >= 16'd798) |
+                   (H_Cont >= 16'd479 && H_Cont <= 16'd483);
+wire near_v_edge = (V_Cont <= 16'd048) | (V_Cont >= 16'd523) |
+                   (V_Cont >= 16'd284 && V_Cont <= 16'd288);
+wire quad_border = VGA_BLANK_N & obj_detected & in_active_quad &
+                   (near_h_edge | near_v_edge);
+
+// base video (edge mode or camera mode)
+wire [7:0] base_r = SW[0] ? edge_r : VGA_R_unfilt;
+wire [7:0] base_g = SW[0] ? edge_g : VGA_G_unfilt;
+wire [7:0] base_b = SW[0] ? edge_b : VGA_B_unfilt;
+
+// final output with overlay
+assign VGA_R = ~VGA_BLANK_N ? 8'h00 :
+               quad_border   ? 8'h00 :
+               is_crosshair  ? 8'h00 :
+                               base_r;
+
+assign VGA_G = ~VGA_BLANK_N ? 8'h00 :
+               quad_border   ? 8'hFF :
+               is_crosshair  ? 8'hFF :
+                               base_g;
+
+assign VGA_B = ~VGA_BLANK_N ? 8'h00 :
+               quad_border   ? 8'h00 :
+               is_crosshair  ? 8'h00 :
+                               base_b;
+
+//=======================================================
+//  HEX displays
+//=======================================================
+// HEX1-HEX0: frame rate (existing)
 FpsMonitor uFps2(
 	  .clk50    ( CLOCK2_50 ),
 	  .vs       ( VGA_VS ),
@@ -275,28 +442,38 @@ FpsMonitor uFps2(
 	  .hex_fps_l( HEX0 )
 );
 
-assign HEX2 = 7'h7F;
-assign HEX3 = 7'h7F;
-assign HEX4 = 7'h7F;
-assign HEX5 = 7'h7F;
+// HEX3-HEX2: detection threshold (hex)
+SEG7_LUT h2( .iDIG( detect_thresh[3:0] ), .oSEG( HEX2 ) );
+SEG7_LUT h3( .iDIG( detect_thresh[7:4] ), .oSEG( HEX3 ) );
+
+// HEX4: detected quadrant (0=TL,1=TR,2=BL,3=BR), blank if none
+wire [6:0] quad_seg;
+SEG7_LUT h4( .iDIG( {2'b00, obj_quadrant} ), .oSEG( quad_seg ) );
+assign HEX4 = obj_detected ? quad_seg : 7'h7F;
+
+// HEX5: audio mode indicator ("1" = line-in FX, "2" = musical notes)
+wire [6:0] hex5_mode1, hex5_mode2;
+SEG7_LUT h5a( .iDIG( 4'd1 ), .oSEG( hex5_mode1 ) );
+SEG7_LUT h5b( .iDIG( 4'd2 ), .oSEG( hex5_mode2 ) );
+assign HEX5 = audio_mode ? hex5_mode2 : hex5_mode1;
 
 //--FREQUENCY TEST--
 CLOCKMEM ck1 ( .CLK(VGA_CLK_25M    ), .CLK_FREQ(25000000), .CK_1HZ(D8M_CK_HZ)  );
 CLOCKMEM ck2 ( .CLK(MIPI_REFCLK    ), .CLK_FREQ(20000000), .CK_1HZ(D8M_CK_HZ2) );
 CLOCKMEM ck3 ( .CLK(MIPI_PIXEL_CLK_), .CLK_FREQ(25000000), .CK_1HZ(D8M_CK_HZ3) );
 
+// debug: max edge count across quadrants (top 5 bits -> LED[4:0])
+wire [19:0] dbg_max_a = (cnt_tl >= cnt_tr) ? cnt_tl : cnt_tr;
+wire [19:0] dbg_max_b = (cnt_bl >= cnt_br) ? cnt_bl : cnt_br;
+wire [19:0] dbg_max   = (dbg_max_a >= dbg_max_b) ? dbg_max_a : dbg_max_b;
+
 //--LED STATUS-----
 assign LEDR[9:0] = {
-    SW[0],        // edge enabled
-    SW[1],        // overlay mode
-    SW[2],        // blur mode
-    SW[4],        // source select
-    SW[9],        // polarity
-    1'b0,
-    CAMERA_MIPI_RELAESE,
-    MIPI_BRIDGE_RELEASE,
-    D8M_CK_HZ,
-    D8M_CK_HZ3
+    audio_mode,       // [9] audio mode (0=FX, 1=notes)
+    obj_detected,     // [8] object detected
+    obj_quadrant,     // [7:6] detected quadrant
+    audio_cfg_done,   // [5] audio codec configured
+    dbg_max[19:15]    // [4:0] top 5 bits of max edge count (debug)
 };
 
 endmodule

@@ -1,0 +1,10 @@
+
+State Machine - |DE1_SOC_D8M_LB_RTL|audio_controller:u_audio|wm8731_config:u_cfg|state
+Name state.S_DONE state.S_PAUSE state.S_STOP state.S_ACK state.S_DATA state.S_START state.S_IDLE 
+state.S_IDLE 0 0 0 0 0 0 0 
+state.S_START 0 0 0 0 0 1 1 
+state.S_DATA 0 0 0 0 1 0 1 
+state.S_ACK 0 0 0 1 0 0 1 
+state.S_STOP 0 0 1 0 0 0 1 
+state.S_PAUSE 0 1 0 0 0 0 1 
+state.S_DONE 1 0 0 0 0 0 1 
