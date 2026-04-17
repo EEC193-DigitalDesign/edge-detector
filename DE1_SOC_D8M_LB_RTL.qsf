@@ -381,10 +381,12 @@ set_global_assignment -name VERILOG_FILE V_D8M/VGA_READ_COUNTER.v
 set_global_assignment -name QIP_FILE vga_pll.qip
 set_global_assignment -name SIP_FILE vga_pll.sip
 set_global_assignment -name VERILOG_FILE V/edge_detect_tracker.v
-set_global_assignment -name VERILOG_FILE V/tone_generator.v
-set_global_assignment -name VERILOG_FILE V/i2s_transmitter.v
 set_global_assignment -name VERILOG_FILE V/wm8731_config.v
-set_global_assignment -name VERILOG_FILE V/audio_controller.v
+set_global_assignment -name VERILOG_FILE V/i2s_transceiver.v
+set_global_assignment -name VERILOG_FILE V/musical_note_gen.v
+set_global_assignment -name VERILOG_FILE V/pitch_shifter.v
+set_global_assignment -name VERILOG_FILE V/echo_delay.v
+set_global_assignment -name VERILOG_FILE V/audio_controller_v2.v
 set_global_assignment -name VERILOG_FILE audio_pll.v
 set_global_assignment -name VERILOG_FILE audio_pll/audio_pll_0002.v
 set_global_assignment -name QIP_FILE audio_pll/audio_pll_0002.qip

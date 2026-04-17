@@ -4,9 +4,9 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Ign)
-		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
+		Device PartName(5CSEMA5) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEMA5F31) Path("C:/EEC181labs/DE1_SOC_D8M_LB_RTL/output_files/") File("DE1_SOC_D8M_LB_RTL.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEMA5F31) Path("C:/EEC181finaltest/output_files/") File("DE1_SOC_D8M_LB_RTL.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

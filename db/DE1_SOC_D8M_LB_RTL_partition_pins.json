@@ -60,10 +60,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[0]",
-					"strict" : false
-				},
-				{
 					"name" : "VGA_CLK",
 					"strict" : false
 				},
@@ -72,7 +68,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "HEX2[6]",
+					"name" : "HEX2[2]",
 					"strict" : false
 				},
 				{
@@ -132,7 +128,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "HEX5[1]",
+					"name" : "HEX5[0]",
 					"strict" : false
 				},
 				{
@@ -149,14 +145,6 @@
 				},
 				{
 					"name" : "HEX5[6]",
-					"strict" : false
-				},
-				{
-					"name" : "LEDR[2]",
-					"strict" : false
-				},
-				{
-					"name" : "LEDR[3]",
 					"strict" : false
 				},
 				{
@@ -180,7 +168,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "VGA_B[0]",
+					"name" : "CAMERA_PWDN_n",
 					"strict" : false
 				},
 				{
@@ -280,7 +268,27 @@
 					"strict" : false
 				},
 				{
-					"name" : "CAMERA_PWDN_n",
+					"name" : "VGA_B[0]",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[0]",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[1]",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[2]",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[3]",
+					"strict" : false
+				},
+				{
+					"name" : "LEDR[4]",
 					"strict" : false
 				},
 				{
@@ -300,10 +308,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "LEDR[1]",
-					"strict" : false
-				},
-				{
 					"name" : "MIPI_I2C_SCL",
 					"strict" : false
 				},
@@ -312,7 +316,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "CAMERA_I2C_SDA",
+					"name" : "AUD_ADCLRCK",
 					"strict" : false
 				},
 				{
@@ -332,15 +336,19 @@
 					"strict" : false
 				},
 				{
+					"name" : "CAMERA_I2C_SDA",
+					"strict" : false
+				},
+				{
 					"name" : "MIPI_PIXEL_CLK",
 					"strict" : false
 				},
 				{
-					"name" : "SW[0]",
+					"name" : "KEY[0]",
 					"strict" : false
 				},
 				{
-					"name" : "KEY[0]",
+					"name" : "SW[0]",
 					"strict" : false
 				},
 				{
@@ -357,6 +365,10 @@
 				},
 				{
 					"name" : "CLOCK_50",
+					"strict" : false
+				},
+				{
+					"name" : "KEY[3]",
 					"strict" : false
 				},
 				{
@@ -400,10 +412,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "MIPI_PIXEL_D[2]",
-					"strict" : false
-				},
-				{
 					"name" : "MIPI_PIXEL_D[3]",
 					"strict" : false
 				},
@@ -432,11 +440,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "MIPI_PIXEL_D[1]",
+					"name" : "MIPI_PIXEL_D[2]",
 					"strict" : false
 				},
 				{
-					"name" : "KEY[3]",
+					"name" : "MIPI_PIXEL_D[1]",
 					"strict" : false
 				},
 				{
@@ -445,6 +453,10 @@
 				},
 				{
 					"name" : "MIPI_PIXEL_D[0]",
+					"strict" : false
+				},
+				{
+					"name" : "AUD_ADCDAT",
 					"strict" : false
 				}
 			]
